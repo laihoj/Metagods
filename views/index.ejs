@@ -3,9 +3,288 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link href="/skeleton.css" rel="stylesheet" type="text/css">
+  <link href="/normalize.css" rel="stylesheet" type="text/css">
+  <link href="/style.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.11/css/all.css" integrity="sha384-p2jx59pefphTFIpeqCcISO9MdVfIm4pNnsL08A6v5vaQc4owkQqxMV8kg4Yvhaw/" crossorigin="anonymous">
+  <script src="/index.js"></script>
+  <script src="/underscore.js"></script>
   <title>Metagods</title>
 </head>
 <body>
-  <h1>Kyllä löytyy</h1>
+  <div class="section hero">
+    <div class="container">
+      <div class="row">
+        <h4>Log your cEDH results. Track your winrate. Grow as a player.</h4>
+        <h4><strong>Be the God of the Meta</strong></h4>
+      </div>
+    </div>
+  </div>
+
+<div class="container">
+	<div class="section match">
+		<h1>New Match Details</h1>
+		<form action="#" method="POST">
+			<label for="turns">Winning Turn: </label>
+			<input class="u-full-width" type="number" value="3" min="0" id="turns">
+			<br>
+			<br>
+			<table class="u-full-width match-result"  id="newmatch">
+				<thead>
+					<tr>
+						<th>Player</th>
+						<th>Decklist</th>
+						<th>Starter</th>
+						<th>Winner</th>
+						<th>Mulled to</th>
+					</tr>
+				</thead>
+				<tbody>
+					<% var players = 0; %>
+					<% include partials/playermatchrow %>
+					<% include partials/playermatchrow %>
+					<% include partials/playermatchrow %>
+					<% include partials/playermatchrow %>
+				</tbody>
+			</table>
+			<div class="row">
+				
+			</div>
+			<br>
+			<input class="button-primary" type="reset" value="Reset">
+			<input class="button-primary" type="submit" value="Submit">
+		</form>
+	</div>
+</div>
+<br><br>
+
+  
+
+
+<div class="section filler">
+	<div class="container">
+		<div class="row">
+			<h4><i>Kyllä löytyy t markus</i></h4>
+		</div>
+	</div>
+</div>
+
+
+<!--
+<form action="#" method="POST">
+	<div class="section match">
+		<div class="row">
+			<div class="input">
+		    	<div class="six columns">
+					<label for="player1pilot">Player 1</label>
+					<select class="u-full-width" id="player1pilot">
+						<option value="Option 1">Jaakko</option>
+						<option value="Option 2">Rynde</option>
+						<option value="Option 3">Matias</option>
+						<option value="Option 4">Valtteri</option>
+					</select>
+				</div>
+				<div class="six columns">
+					<label for="player1decklist">Decklist</label>
+					<select class="u-full-width" id="player1decklist">
+						<option value="Option 1">Tymna Kraum</option>
+						<option value="Option 2">Bruse Tymna</option>
+						<option value="Option 3">Thrasios Silas</option>
+						<option value="Option 4">Gitrog</option>
+					</select>
+				</div>
+				<p><strong>Status</strong></p>
+				<label>
+					<input type="radio" name="starter" value="player1">
+					<span class="label-body">Starter</span>
+				</label>
+				<label>
+					<input type="radio" name="winner" value="player1">
+					<span class="label-body">Winner</span>
+				</label>
+			</div>
+		</div>
+		<div class="row">
+			<div class="input">
+		    	<div class="six columns">
+					<label for="player2pilot">Player 2</label>
+					<select class="u-full-width" id="player2pilot">
+						<option value="Option 1">Jaakko</option>
+						<option value="Option 2">Rynde</option>
+						<option value="Option 3">Matias</option>
+						<option value="Option 4">Valtteri</option>
+					</select>
+				</div>
+				<div class="six columns">
+					<label for="player2decklist">Decklist</label>
+					<select class="u-full-width" id="player2decklist">
+						<option value="Option 1">Tymna Kraum</option>
+						<option value="Option 2">Bruse Tymna</option>
+						<option value="Option 3">Thrasios Silas</option>
+						<option value="Option 4">Gitrog</option>
+					</select>
+				</div>
+				<p><strong>Status</strong></p>
+				<label>
+					<input type="radio" name="starter" value="player2">
+					<span class="label-body">Starter</span>
+				</label>
+				<label>
+					<input type="radio" name="winner" value="player2">
+					<span class="label-body">Winner</span>
+				</label>
+			</div>
+		</div>
+		<div class="row">
+			<div class="input">
+		    	<div class="six columns">
+					<label for="player3pilot">Player 3</label>
+					<select class="u-full-width" id="player3pilot">
+						<option value="Option 1">Jaakko</option>
+						<option value="Option 2">Rynde</option>
+						<option value="Option 3">Matias</option>
+						<option value="Option 4">Valtteri</option>
+					</select>
+				</div>
+				<div class="six columns">
+					<label for="player3decklist">Decklist</label>
+					<select class="u-full-width" id="player3decklist">
+						<option value="Option 1">Tymna Kraum</option>
+						<option value="Option 2">Bruse Tymna</option>
+						<option value="Option 3">Thrasios Silas</option>
+						<option value="Option 4">Gitrog</option>
+					</select>
+				</div>
+				<p><strong>Status</strong></p>
+				<label>
+					<input type="radio" name="starter" value="player3">
+					<span class="label-body">Starter</span>
+				</label>
+				<label>
+					<input type="radio" name="winner" value="player3">
+					<span class="label-body">Winner</span>
+				</label>
+			</div>
+		</div>
+		<div class="row">
+			<div class="input">
+		    	<div class="six columns">
+					<label for="player4pilot">Player 4</label>
+					<select class="u-full-width" id="player4pilot">
+						<option value="Option 1">Jaakko</option>
+						<option value="Option 2">Rynde</option>
+						<option value="Option 3">Matias</option>
+						<option value="Option 4">Valtteri</option>
+					</select>
+				</div>
+				<div class="six columns">
+					<label for="player4decklist">Decklist</label>
+					<select class="u-full-width" id="player4decklist">
+						<option value="Option 1">Tymna Kraum</option>
+						<option value="Option 2">Bruse Tymna</option>
+						<option value="Option 3">Thrasios Silas</option>
+						<option value="Option 4">Gitrog</option>
+					</select>
+				</div>
+				<p><strong>Status</strong></p>
+				<label>
+					<input type="radio" name="starter" value="player4">
+					<span class="label-body">Starter</span>
+				</label>
+				<label>
+					<input type="radio" name="winner" value="player4">
+					<span class="label-body">Winner</span>
+				</label>
+			</div>
+		</div>
+	</div>
+</form>
+<br><br>
+-->
+
+<div class="section matches">
+	<div class="container">
+		<div class="row">
+			<table class="u-full-width">
+			  <thead>
+			    <tr>
+			      <th>#</th>
+			      <th>Meta</th>
+			      <th>Turns</th>
+			      <th>Players</th>
+			      <th>Date</th>
+			      <th>Winner</th>
+			    </tr>
+			  </thead>
+			  <tbody>
+			  </tbody>
+			</table>
+		</div>
+	</div>
+</div>
+
+<div class="section filler">
+	<div class="container">
+		<div class="row">
+          <h4><i>Psykoosit tulilla t rynde</i></h4>
+		</div>
+	</div>
+</div>
+
+<div class="section data">
+	<div class="container">
+		<div class="row">
+			<table class="u-full-width">
+			  <thead>
+			    <tr>
+			      <th>Player</th>
+			      <th>Decklist</th>
+			      <th>Winrate</th>
+			      <th>Meta</th>
+			      <th>A. CMC</th>
+			    </tr>
+			  </thead>
+			  <tbody>
+			    <tr>
+			      <td>Rynde</td>
+			      <td><a href="http://tappedout.net/mtg-decks/mad-farm/"><h5>Bruse Tymna</h5></a></td>
+			      <td>25%</td>
+			      <td>Poromagia</td>
+			      <td>1.5</td>
+			    </tr>
+			    <tr>
+			      <td>Valtteri</td>
+			      <td><a href="http://tappedout.net/mtg-decks/gitrog-land-combo/"><h5>Gitrog</h5></a></td>
+			      <td>25%</td>
+			      <td>Poromagia</td>
+			      <td>1.6</td>
+			    </tr>
+			    <tr>
+			      <td>Matias</td>
+			      <td><a href="http://tappedout.net/mtg-decks/melt-banana/"><h5>Thrasios Silas</h5></a></td>
+			      <td>25%</td>
+			      <td>Poromagia</td>
+			      <td>1.5</td>
+			    </tr>
+			    <tr>
+			      <td>Jaakko</td>
+			      <td><a href="http://tappedout.net/mtg-decks/16-11-17-troll-deck/"><h5>Tymna Kraum</h5></a></td>
+			      <td>25%</td>
+			      <td>Poromagia</td>
+			      <td>1.47</td>
+			    </tr>
+			  </tbody>
+			</table>
+		</div>
+	</div>
+</div>
+
+<div class="section filler">
+	<div class="container">
+		<div class="row">
+          <h4><i>Se on sit just niin t matias</i></h4>
+		</div>
+	</div>
 </body>
+
 </html>

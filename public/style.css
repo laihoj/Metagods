@@ -1,0 +1,41 @@
+.section {
+  padding: 8rem 0 7rem;
+  text-align: center;
+}
+.section-heading,
+.section-description {
+  margin-bottom: 1.2rem;
+}
+
+.hero {
+  background-image: url('https://227rsi2stdr53e3wto2skssd7xe-wpengine.netdna-ssl.com/wp-content/uploads/2016/02/ad-nauseam-617x280.jpg');
+  background-size: cover;
+  color: #fff;
+  padding-bottom: 5rem;
+}
+
+.hero::after {
+  content: "";
+  opacity: 1;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  position: absolute;
+  z-index: -1; 
+}
+
+.match {
+  box-shadow: 0 3px 5px 3px rgba(36, 31, 32, .3);
+  padding: 1rem;
+  margin: 2rem;
+  border-radius: 15px;
+}
+
+.match-result td {
+	padding: 1rem;
+}
+
+.filler {
+	background-color: whitesmoke;
+}
