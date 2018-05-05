@@ -2,18 +2,12 @@
 <tr>
 	<td>
 		<select class="u-full-width" onchange="changeDeckList('<%=players%>')" id="player<%=players%>pilot">
-			<option value="default">- Player -</option>
-			<option value="Jaakko">Jaakko</option>
-			<option value="Rynde">Rynde</option>
-			<option value="Matias">Matias</option>
-			<option value="Valtteri">Valtteri</option>
-			<option value="Tommi">Tommi</option>
+			<% for(var i = 0; i < playerNames.length; i++) { %>
+				<option value="<%= playerNames[i] %>"><%= playerNames[i] %></option>
+			<% } %>
 		</select>
 	</td>
-	<td>
-		<select class="u-full-width" id="player<%=players%>decklist"></select>
-	</td>
+	<td><select class="u-full-width" id="player<%=players%>decklist"></select></td>
 	<td><input type="radio" name="starter" value="player<%=players%>"></td>
 	<td><input type="radio" name="winner" value="player<%=players%>"></td>
-	<td><input type="number" min="0" max="7" value="7"></td>
 </tr>

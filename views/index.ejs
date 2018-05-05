@@ -1,17 +1,6 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <link href="/skeleton.css" rel="stylesheet" type="text/css">
-  <link href="/normalize.css" rel="stylesheet" type="text/css">
-  <link href="/style.css" rel="stylesheet" type="text/css">
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.11/css/all.css" integrity="sha384-p2jx59pefphTFIpeqCcISO9MdVfIm4pNnsL08A6v5vaQc4owkQqxMV8kg4Yvhaw/" crossorigin="anonymous">
-  <script src="/index.js"></script>
-  <script src="/underscore.js"></script>
-  <title>Metagods</title>
-</head>
-<body>
+<% include ./partials/header %>
+<% include ./partials/navbar %>
+
   <div class="section hero">
     <div class="container">
       <div class="row">
@@ -23,42 +12,118 @@
 
 <div class="container">
 	<div class="section match">
-		<h1>New Match Details</h1>
-		<form action="#" method="POST">
+		<h1>New Match Details NOT FUNCTIONAL</h1>
+		<form action="#" method="post">
 			<label for="turns">Winning Turn: </label>
-			<input class="u-full-width" type="number" value="3" min="0" id="turns">
+			<input type="number" value="3" min="0" id="turns" name="turns">
 			<br>
 			<br>
-			<table class="u-full-width match-result"  id="newmatch">
-				<thead>
-					<tr>
-						<th>Player</th>
-						<th>Decklist</th>
-						<th>Starter</th>
-						<th>Winner</th>
-						<th>Mulled to</th>
-					</tr>
-				</thead>
-				<tbody>
-					<% var players = 0; %>
-					<% include partials/playermatchrow %>
-					<% include partials/playermatchrow %>
-					<% include partials/playermatchrow %>
-					<% include partials/playermatchrow %>
-				</tbody>
-			</table>
-			<div class="row">
-				
+			<div>
+				<table class="match-result u-full-width" id="newmatch">
+					<thead>
+						<tr>
+							<th>Player</th>
+							<th>Decklist</th>
+							<th>Starter</th>
+							<th>Winner</th>
+						</tr>
+					</thead>
+					<tbody>
+						<% var players = 0; %>
+						<% var playerNames = ["-player-", "Jaakko", "Rynde", "Matias", "Valtteri", "Tommi", "Markus", "Jonne", "Joel", "Tino"]; %>
+
+						<% include partials/playermatchrow %>
+						<% include partials/playermatchrow %>
+						<% include partials/playermatchrow %>
+						<% include partials/playermatchrow %>
+					</tbody>
+				</table>
 			</div>
+
 			<br>
 			<input class="button-primary" type="reset" value="Reset">
 			<input class="button-primary" type="submit" value="Submit">
 		</form>
 	</div>
+
+	<div class="section match">
+		<h1>Enter goldfish NOT FUNCTIONAL</h1>
+		<form action="#" method="post">
+			<label for="turns">Winning Turn: </label>
+			<input type="number" value="3" min="0" id="turns">
+			<br>
+			<br>
+			<div>
+				<table class="match-result u-full-width" id="newmatch">
+					<thead>
+						<tr>
+							<th>Player</th>
+							<th>Decklist</th>
+							<th>Starter</th>
+							<th>Winner</th>
+						</tr>
+					</thead>
+					<tbody>
+						<%// var players = 0; %>
+						<%// var playerNames = ["-player-", "Jaakko", "Rynde", "Matias", "Valtteri", "Tommi", "Markus", "Jonne", "Joel", "Tino"]; %>
+
+						<% include partials/playermatchrow %>
+					</tbody>
+				</table>
+			</div>
+
+			<br>
+			<input class="button-primary" type="reset" value="Reset">
+			<input class="button-primary" type="submit" value="Submit">
+		</form>
+
+	</div>
 </div>
 <br><br>
 
-  
+<div class="section filler">
+	<div class="container">
+		<div class="row">
+			<h4><i>Doomsday pass</i></h4>
+		</div>
+	</div>
+</div>
+
+
+<div class="section match">
+	<div class="container">
+		<div class="row">
+			<form action="/deck" method="post">
+  				<div class="four columns">
+    				<h5>Add decklist</h5>
+					<label for="decklist">Deck name</label>
+					<input type="text" name="deck[decklist]" id="decklist" placeholder="creativename.dec">
+					<br>
+					<br>
+					<label for="tappedout">Tappedout URL</label>
+					<input type="text" name="deck[tappedout]" id="tappedout" placeholder="tappedout.com/creativename">
+					<br>
+					<br>
+					<input type="submit" class="button-primary">
+				</div>
+			</form>
+			<form action="/player" method="post">
+  				<div class="four columns">
+    				<h5>Add player</h5>
+					<label for="username">Player</label>
+					<input type="text" name="username" id="username" placeholder="username" required>
+					<br>
+					<br>
+					<label for="password">Password <i class="fas fa-eye" onmouseover="document.getElementById('password').type='text'" onmouseout="document.getElementById('password').type='password'"></i></label>
+					<input type="password" name="password" placeholder="password" id="password" required>
+					<br>
+					<br>
+					<input type="submit" class="button-primary">
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
 
 
 <div class="section filler">
@@ -69,138 +134,6 @@
 	</div>
 </div>
 
-
-<!--
-<form action="#" method="POST">
-	<div class="section match">
-		<div class="row">
-			<div class="input">
-		    	<div class="six columns">
-					<label for="player1pilot">Player 1</label>
-					<select class="u-full-width" id="player1pilot">
-						<option value="Option 1">Jaakko</option>
-						<option value="Option 2">Rynde</option>
-						<option value="Option 3">Matias</option>
-						<option value="Option 4">Valtteri</option>
-					</select>
-				</div>
-				<div class="six columns">
-					<label for="player1decklist">Decklist</label>
-					<select class="u-full-width" id="player1decklist">
-						<option value="Option 1">Tymna Kraum</option>
-						<option value="Option 2">Bruse Tymna</option>
-						<option value="Option 3">Thrasios Silas</option>
-						<option value="Option 4">Gitrog</option>
-					</select>
-				</div>
-				<p><strong>Status</strong></p>
-				<label>
-					<input type="radio" name="starter" value="player1">
-					<span class="label-body">Starter</span>
-				</label>
-				<label>
-					<input type="radio" name="winner" value="player1">
-					<span class="label-body">Winner</span>
-				</label>
-			</div>
-		</div>
-		<div class="row">
-			<div class="input">
-		    	<div class="six columns">
-					<label for="player2pilot">Player 2</label>
-					<select class="u-full-width" id="player2pilot">
-						<option value="Option 1">Jaakko</option>
-						<option value="Option 2">Rynde</option>
-						<option value="Option 3">Matias</option>
-						<option value="Option 4">Valtteri</option>
-					</select>
-				</div>
-				<div class="six columns">
-					<label for="player2decklist">Decklist</label>
-					<select class="u-full-width" id="player2decklist">
-						<option value="Option 1">Tymna Kraum</option>
-						<option value="Option 2">Bruse Tymna</option>
-						<option value="Option 3">Thrasios Silas</option>
-						<option value="Option 4">Gitrog</option>
-					</select>
-				</div>
-				<p><strong>Status</strong></p>
-				<label>
-					<input type="radio" name="starter" value="player2">
-					<span class="label-body">Starter</span>
-				</label>
-				<label>
-					<input type="radio" name="winner" value="player2">
-					<span class="label-body">Winner</span>
-				</label>
-			</div>
-		</div>
-		<div class="row">
-			<div class="input">
-		    	<div class="six columns">
-					<label for="player3pilot">Player 3</label>
-					<select class="u-full-width" id="player3pilot">
-						<option value="Option 1">Jaakko</option>
-						<option value="Option 2">Rynde</option>
-						<option value="Option 3">Matias</option>
-						<option value="Option 4">Valtteri</option>
-					</select>
-				</div>
-				<div class="six columns">
-					<label for="player3decklist">Decklist</label>
-					<select class="u-full-width" id="player3decklist">
-						<option value="Option 1">Tymna Kraum</option>
-						<option value="Option 2">Bruse Tymna</option>
-						<option value="Option 3">Thrasios Silas</option>
-						<option value="Option 4">Gitrog</option>
-					</select>
-				</div>
-				<p><strong>Status</strong></p>
-				<label>
-					<input type="radio" name="starter" value="player3">
-					<span class="label-body">Starter</span>
-				</label>
-				<label>
-					<input type="radio" name="winner" value="player3">
-					<span class="label-body">Winner</span>
-				</label>
-			</div>
-		</div>
-		<div class="row">
-			<div class="input">
-		    	<div class="six columns">
-					<label for="player4pilot">Player 4</label>
-					<select class="u-full-width" id="player4pilot">
-						<option value="Option 1">Jaakko</option>
-						<option value="Option 2">Rynde</option>
-						<option value="Option 3">Matias</option>
-						<option value="Option 4">Valtteri</option>
-					</select>
-				</div>
-				<div class="six columns">
-					<label for="player4decklist">Decklist</label>
-					<select class="u-full-width" id="player4decklist">
-						<option value="Option 1">Tymna Kraum</option>
-						<option value="Option 2">Bruse Tymna</option>
-						<option value="Option 3">Thrasios Silas</option>
-						<option value="Option 4">Gitrog</option>
-					</select>
-				</div>
-				<p><strong>Status</strong></p>
-				<label>
-					<input type="radio" name="starter" value="player4">
-					<span class="label-body">Starter</span>
-				</label>
-				<label>
-					<input type="radio" name="winner" value="player4">
-					<span class="label-body">Winner</span>
-				</label>
-			</div>
-		</div>
-	</div>
-</form>
-<br><br>
--->
 
 <div class="section matches">
 	<div class="container">
@@ -278,13 +211,4 @@
 		</div>
 	</div>
 </div>
-
-<div class="section filler">
-	<div class="container">
-		<div class="row">
-          <h4><i>Se on sit just niin t matias</i></h4>
-		</div>
-	</div>
-</body>
-
-</html>
+<% include ./partials/footer %>

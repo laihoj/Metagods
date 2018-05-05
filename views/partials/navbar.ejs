@@ -1,0 +1,11 @@
+<nav class="navbar navbar-expand-lg d-flex">
+  <div class="container">
+	<a class="navbar-brand" href="/">Metagods</a>
+	<%if(!currentUser) {%>
+		<a class="nav-item nav-link" href="/login"><strong>Login</strong></a>
+	<% } else { %>
+		<a class="nav-item nav-link" href="/player"><strong>Player</strong></a>
+		<a class="nav-item nav-link" href="/logout"><strong>Logout</strong></a>
+	<% } %>
+   </div>
+</nav>
