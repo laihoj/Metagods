@@ -94,7 +94,7 @@
 	<div class="container">
 		<div class="row">
 			<form action="/deck" method="post">
-  				<div class="four columns">
+  				<div class="u-full-width">
     				<h5>Add decklist</h5>
 					<label for="decklist">Deck name</label>
 					<input type="text" name="deck[decklist]" id="decklist" placeholder="creativename.dec">
@@ -102,20 +102,6 @@
 					<br>
 					<label for="tappedout">Tappedout URL</label>
 					<input type="text" name="deck[tappedout]" id="tappedout" placeholder="tappedout.com/creativename">
-					<br>
-					<br>
-					<input type="submit" class="button-primary">
-				</div>
-			</form>
-			<form action="/player" method="post">
-  				<div class="four columns">
-    				<h5>Add player</h5>
-					<label for="username">Player</label>
-					<input type="text" name="username" id="username" placeholder="username" required>
-					<br>
-					<br>
-					<label for="password">Password <i class="fas fa-eye" onmouseover="document.getElementById('password').type='text'" onmouseout="document.getElementById('password').type='password'"></i></label>
-					<input type="password" name="password" placeholder="password" id="password" required>
 					<br>
 					<br>
 					<input type="submit" class="button-primary">

@@ -1,13 +1,12 @@
-<form action="/login" method="post">
-	<h5>Login</h5>
+<form action="/player" method="post">
+	<h5>Add player</h5>
 	<label for="username">Player</label>
 	<input type="text" name="username" id="username" placeholder="username" required>
 	<br>
 	<br>
-	<label for="password">Password</label>
+	<label for="password">Password <i class="fas fa-eye" onmouseover="document.getElementById('password').type='text'" onmouseout="document.getElementById('password').type='password'"></i></label>
 	<input type="password" name="password" placeholder="password" id="password" required>
 	<br>
 	<br>
 	<input type="submit" class="button-primary">
-	<p>New player? <a href="/register">Sign up here</a></p>
 </form>
