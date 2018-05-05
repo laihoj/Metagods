@@ -1,0 +1,37 @@
+<% include ./partials/header %>
+
+<div class="container">
+	<div class="section match">
+		<h1>New Match Details NOT FUNCTIONAL</h1>
+		<form action="#" method="post">
+			<label for="turns">Winning Turn: </label>
+			<input type="number" value="3" min="0" id="turns" name="turns">
+			<br>
+			<br>
+			<div>
+				<table class="match-result u-full-width" id="newmatch">
+					<thead>
+						<tr>
+							<th>Player</th>
+							<th>Decklist</th>
+							<th>Starter</th>
+							<th>Winner</th>
+						</tr>
+					</thead>
+					<tbody>
+						<% include partials/playermatchrow %>
+						<% include partials/playermatchrow %>
+						<% include partials/playermatchrow %>
+						<% include partials/playermatchrow %>
+					</tbody>
+				</table>
+			</div>
+			<br>
+			<input class="button-primary" type="reset" value="Reset">
+			<input class="button-primary" type="submit" value="Submit">
+		</form>
+	</div>
+</div>
+
+
+<% include ./partials/footer %>

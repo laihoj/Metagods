@@ -1,10 +1,12 @@
 <nav class="navbar navbar-expand-lg d-flex">
   <div class="container">
 	<a class="navbar-brand" href="/">Metagods</a>
+	<a class="nav-item nav-link" href="/decks"><strong>Decks</strong></a>
+	<a class="nav-item nav-link" href="/matches"><strong>Matches</strong></a>
 	<%if(!currentUser) {%>
 		<a class="nav-item nav-link" href="/login"><strong>Login</strong></a>
 	<% } else { %>
-		<a class="nav-item nav-link" href="/player"><strong>Player</strong></a>
+		<a class="nav-item nav-link" href="/players/<%=currentUser.username%>"><strong><%=currentUser.username%></strong></a>
 		<a class="nav-item nav-link" href="/logout"><strong>Logout</strong></a>
 	<% } %>
    </div>

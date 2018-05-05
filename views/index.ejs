@@ -1,51 +1,9 @@
 <% include ./partials/header %>
-<% include ./partials/navbar %>
 
-  <div class="section hero">
-    <div class="container">
-      <div class="row">
-        <h4>Log your cEDH results. Track your winrate. Grow as a player.</h4>
-        <h4><strong>Be the God of the Meta</strong></h4>
-      </div>
-    </div>
-  </div>
+
+
 
 <div class="container">
-	<div class="section match">
-		<h1>New Match Details NOT FUNCTIONAL</h1>
-		<form action="#" method="post">
-			<label for="turns">Winning Turn: </label>
-			<input type="number" value="3" min="0" id="turns" name="turns">
-			<br>
-			<br>
-			<div>
-				<table class="match-result u-full-width" id="newmatch">
-					<thead>
-						<tr>
-							<th>Player</th>
-							<th>Decklist</th>
-							<th>Starter</th>
-							<th>Winner</th>
-						</tr>
-					</thead>
-					<tbody>
-						<% var players = 0; %>
-						<% var playerNames = ["-player-", "Jaakko", "Rynde", "Matias", "Valtteri", "Tommi", "Markus", "Jonne", "Joel", "Tino"]; %>
-
-						<% include partials/playermatchrow %>
-						<% include partials/playermatchrow %>
-						<% include partials/playermatchrow %>
-						<% include partials/playermatchrow %>
-					</tbody>
-				</table>
-			</div>
-
-			<br>
-			<input class="button-primary" type="reset" value="Reset">
-			<input class="button-primary" type="submit" value="Submit">
-		</form>
-	</div>
-
 	<div class="section match">
 		<h1>Enter goldfish NOT FUNCTIONAL</h1>
 		<form action="#" method="post">
@@ -64,10 +22,9 @@
 						</tr>
 					</thead>
 					<tbody>
-						<%// var players = 0; %>
-						<%// var playerNames = ["-player-", "Jaakko", "Rynde", "Matias", "Valtteri", "Tommi", "Markus", "Jonne", "Joel", "Tino"]; %>
-
-						<% include partials/playermatchrow %>
+					<% var players = 0; %>
+					<% var playerNames = ["-player-", "Jaakko", "Rynde", "Matias", "Valtteri", "Tommi", "Markus", "Jonne", "Joel", "Tino"]; %>
+					<% include partials/playermatchrow %>
 					</tbody>
 				</table>
 			</div>
@@ -93,20 +50,9 @@
 <div class="section match">
 	<div class="container">
 		<div class="row">
-			<form action="/deck" method="post">
-  				<div class="u-full-width">
-    				<h5>Add decklist</h5>
-					<label for="decklist">Deck name</label>
-					<input type="text" name="deck[decklist]" id="decklist" placeholder="creativename.dec">
-					<br>
-					<br>
-					<label for="tappedout">Tappedout URL</label>
-					<input type="text" name="deck[tappedout]" id="tappedout" placeholder="tappedout.com/creativename">
-					<br>
-					<br>
-					<input type="submit" class="button-primary">
-				</div>
-			</form>
+			<div class="u-full-width">
+				<% include ./partials/newdeckform %>
+			</div>
 		</div>
 	</div>
 </div>
@@ -150,51 +96,4 @@
 	</div>
 </div>
 
-<div class="section data">
-	<div class="container">
-		<div class="row">
-			<table class="u-full-width">
-			  <thead>
-			    <tr>
-			      <th>Player</th>
-			      <th>Decklist</th>
-			      <th>Winrate</th>
-			      <th>Meta</th>
-			      <th>A. CMC</th>
-			    </tr>
-			  </thead>
-			  <tbody>
-			    <tr>
-			      <td>Rynde</td>
-			      <td><a href="http://tappedout.net/mtg-decks/mad-farm/"><h5>Bruse Tymna</h5></a></td>
-			      <td>25%</td>
-			      <td>Poromagia</td>
-			      <td>1.5</td>
-			    </tr>
-			    <tr>
-			      <td>Valtteri</td>
-			      <td><a href="http://tappedout.net/mtg-decks/gitrog-land-combo/"><h5>Gitrog</h5></a></td>
-			      <td>25%</td>
-			      <td>Poromagia</td>
-			      <td>1.6</td>
-			    </tr>
-			    <tr>
-			      <td>Matias</td>
-			      <td><a href="http://tappedout.net/mtg-decks/melt-banana/"><h5>Thrasios Silas</h5></a></td>
-			      <td>25%</td>
-			      <td>Poromagia</td>
-			      <td>1.5</td>
-			    </tr>
-			    <tr>
-			      <td>Jaakko</td>
-			      <td><a href="http://tappedout.net/mtg-decks/16-11-17-troll-deck/"><h5>Tymna Kraum</h5></a></td>
-			      <td>25%</td>
-			      <td>Poromagia</td>
-			      <td>1.47</td>
-			    </tr>
-			  </tbody>
-			</table>
-		</div>
-	</div>
-</div>
 <% include ./partials/footer %>

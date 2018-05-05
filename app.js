@@ -42,29 +42,44 @@ app.get("/api", function(req,res) {
 	res.send("API");
 });
 
-app.get("/deck/:deck", function(req,res){
-	res.send("decklist get found");
-});
-
-app.post("/deck", function(req,res){
-	Deck.create(req.body.deck, function(err, newDeck) {
+app.get("/decks", function(req,res){
+	Deck.find({}, function(err, foundDecks) {
 		if(err) {
 			console.log(err);
-			req.flash("error", "Deck not added");
 			res.redirect("/");
 		} else {
-			console.log("Deck added");
-			req.flash("success", "New Deck Added");
-			res.redirect("/");
+			res.render("decks",{decks:foundDecks});
 		}
 	});
 });
 
-app.get("/player", isAuthenticated, function(req,res){
+app.post("/decks", createDeck, isAuthenticated, addDeckToPlayerFavourites, function(req,res){
+	res.redirect("/decks");
+});
+
+//playersanddecks doesnt seem to work
+app.get("/matches", retreiveAllPlayers, retreiveAllDecks, function(req, res) {
+	var playerNames = ["-- Default --"];
+	for(var i = 0; i < res.locals.allPlayers.length; i++) {
+		playerNames.push(res.locals.allPlayers[i].username);
+	}
+	// var playersAndDecks = {};
+	// playersAndDecks["-- Default --"] = [];
+	// for(var i = 0; i < res.locals.allDecks.length; i++) {
+	// 	playersAndDecks["-- Default --"].push(res.locals.allDecks[i].name);
+	// }
+	res.render("matches",{
+		players:0,
+		playerNames:playerNames,
+		// playersAndDecks:playersAndDecks
+	});
+});
+
+app.get("/players/:player", isAuthenticated, function(req,res){
 	res.render("profile");
 });
 
-app.post("/player", function(req,res){
+app.post("/players", function(req,res){
 	var newPlayer = {
 		username: req.body.username,
 		decks: []
@@ -75,7 +90,7 @@ app.post("/player", function(req,res){
 			res.redirect("/");
 		} else {
 			passport.authenticate("local")(req, res, function() {
-				res.redirect(req.session.redirectTo || '/');
+				res.redirect(req.session.redirectTo || '/players/' +req.user.username);
 				delete req.session.redirectTo;
 			}
 		)}
@@ -88,7 +103,7 @@ app.post("/login", passport.authenticate("local", {failureRedirect: "/login", fa
 		res.redirect("/login");
 	} else {
 		req.flash("success", "Logged in");
-		res.redirect(req.session.redirectTo || '/');
+		res.redirect(req.session.redirectTo || '/players/' +req.user.username);
 		delete req.session.redirectTo;
 	}
 });
@@ -120,6 +135,62 @@ function isAuthenticated(req,res,next) {
 	res.redirect("/login");
 }
 
+function createDeck(req, res, next) {
+	Deck.create(req.body.deck, function(err, newDeck) {
+		if(err) {
+			console.log(err);
+			req.flash("error", "Deck not created");
+			res.redirect("/");
+		} else {
+			console.log("Deck added");
+			req.flash("success", "New Deck Created");
+			res.locals.newDeck = newDeck;
+			return next();
+		}
+	});
+}
+
+function addDeckToPlayerFavourites(req, res, next) {
+	User.findOneAndUpdate({_id:req.user._id}, 
+		{
+			$addToSet: {decks:res.locals.newDeck.name}
+		}, function(err, foundUser) {
+		if(err) {
+			console.log("Failed to add deck to players favourites");
+			console.log(err);
+			req.flash("error","Failed to add deck to players favourites");
+			return next();
+		} else {
+			console.log("Deck added to players favourites");
+			req.flash("success","Deck added to players favourites");
+			return next();
+		}
+	});
+}
+
+function retreiveAllPlayers(req, res, next) {
+	User.find({}, function(err, foundUsers) {
+		if(err) {
+			console.log(err);
+		} else {
+			console.log(foundUsers);
+			res.locals.allPlayers = foundUsers;
+			return next();
+		}
+	});
+}
+
+function retreiveAllDecks(req, res, next) {
+	Deck.find({}, function(err, foundDecks) {
+		if(err) {
+			console.log(err);
+		} else {
+			console.log(foundDecks);
+			res.locals.allDecks = foundDecks;
+			return next();
+		}
+	});
+}
 
 app.listen(process.env.PORT || 3000, function() {
 	console.log("Metagods");

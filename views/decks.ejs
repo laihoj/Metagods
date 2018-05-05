@@ -1,0 +1,34 @@
+<% include ./partials/header %>
+
+<div class="section data">
+	<div class="container">
+		<div class="row">
+			<table class="match-result u-full-width">
+			<h1>Decks</h1>
+			  <thead>
+			    <tr>
+			      <th>Deck</th>
+			      <th>Tappedout</th>
+			      <% if(currentUser) { %>
+			      <th>Favourited</th>
+			      <% } %>
+			    </tr>
+			  </thead>
+			  <tbody>
+			 		<% for(var i = 0; i < decks.length; i++) { %>
+			  			<tr>
+							<td><a href="/decks/<%= decks[i].name %>"><%= decks[i].name %></a></td>
+							<td><a href="<%=decks[i].tappedout%>" ><%= decks[i].name %></td>
+							<% if(currentUser) { %>
+							<td>X</td>
+							<% } %>
+						</tr>
+					<% } %>
+			  </tbody>
+			</table>
+		</div>
+	</div>
+</div>
+
+
+<% include ./partials/footer %>

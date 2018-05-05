@@ -1,11 +1,26 @@
 <% include ./partials/header %>
-<% include ./partials/navbar %>
 
 <div class="section match">
 	<div class="container">
 		<div class="row">
 			<div class="u-full-width">
-				<h1><%= currentUser.username %></h1>
+				<h2><%= currentUser.username %></h2>
+				<h3>My Favourite Decks</h3>
+				<ul>
+					<% for(var i = 0; i < currentUser.decks.length; i++) { %>
+						<li><a href="/decks/<%= currentUser.decks[i] %>"><%= currentUser.decks[i] %></a></li>
+					<% } %>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="section match">
+	<div class="container">
+		<div class="row">
+			<div class="u-full-width">
+				<% include ./partials/newdeckform %>
 			</div>
 		</div>
 	</div>

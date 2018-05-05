@@ -2,7 +2,7 @@
 
 var playersAndDecks = {};
 playersAndDecks["Matias"] = ["Thrasios Silas", "Yidris"];
-playersAndDecks["Jaakko"] = ["Zur", "Breya", "Tymna Kraum"];
+playersAndDecks["jaakko"] = ["Zur", "Breya", "Tymna Kraum"];
 playersAndDecks["Tommi"] = ["Tymna Thrasios"];
 playersAndDecks["Valtteri"] = ["Gitrog"];
 playersAndDecks["Rynde"] = ["Mad farm"];
