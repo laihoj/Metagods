@@ -1,11 +1,11 @@
 // var playerNames = ["default", "Jaakko", "Rynde", "Matias", "Valtteri", "Tommi", "Markus", "Jonne", "Joel", "Tino"];
 
-var playersAndDecks = {};
-playersAndDecks["Matias"] = ["Thrasios Silas", "Yidris"];
-playersAndDecks["jaakko"] = ["Zur", "Breya", "Tymna Kraum"];
-playersAndDecks["Tommi"] = ["Tymna Thrasios"];
-playersAndDecks["Valtteri"] = ["Gitrog"];
-playersAndDecks["Rynde"] = ["Mad farm"];
+// var playersAndDecks = {};
+// playersAndDecks["Matias"] = ["Thrasios Silas", "Yidris"];
+// playersAndDecks["jaakko"] = ["Zur", "Breya", "Tymna Kraum"];
+// playersAndDecks["Tommi"] = ["Tymna Thrasios"];
+// playersAndDecks["Valtteri"] = ["Gitrog"];
+// playersAndDecks["Rynde"] = ["Mad farm"];
 
 function changeDeckList(i) {
   var playerList = document.getElementById("player"+i+"pilot");

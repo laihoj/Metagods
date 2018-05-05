@@ -32,6 +32,7 @@ app.use(function(req, res, next){
 
 var User = require("./models/user");
 var Deck = require("./models/deck");
+var Result = require("./models/result");
 
 
 passport.use(new LocalStrategy(User.authenticate()));
@@ -42,37 +43,24 @@ app.get("/api", function(req,res) {
 	res.send("API");
 });
 
-app.get("/decks", function(req,res){
-	Deck.find({}, function(err, foundDecks) {
-		if(err) {
-			console.log(err);
-			res.redirect("/");
-		} else {
-			res.render("decks",{decks:foundDecks});
-		}
-	});
+app.get("/api/decks", retreiveAllDecks, function(req,res) {
+	res.send(res.locals.allDecks);
+});
+
+app.get("/decks", retreiveAllDecks, function(req,res){
+	res.render("decks",{decks:res.locals.allDecks});
 });
 
 app.post("/decks", createDeck, isAuthenticated, addDeckToPlayerFavourites, function(req,res){
 	res.redirect("/decks");
 });
 
-//playersanddecks doesnt seem to work
-app.get("/matches", retreiveAllPlayers, retreiveAllDecks, function(req, res) {
-	var playerNames = ["-- Default --"];
-	for(var i = 0; i < res.locals.allPlayers.length; i++) {
-		playerNames.push(res.locals.allPlayers[i].username);
-	}
-	// var playersAndDecks = {};
-	// playersAndDecks["-- Default --"] = [];
-	// for(var i = 0; i < res.locals.allDecks.length; i++) {
-	// 	playersAndDecks["-- Default --"].push(res.locals.allDecks[i].name);
-	// }
-	res.render("matches",{
-		players:0,
-		playerNames:playerNames,
-		// playersAndDecks:playersAndDecks
-	});
+app.get("/results", retreiveAllResults, function(req, res) {
+	res.render("results");
+});
+
+app.post("/results", createResult, function(req, res) {
+	res.redirect("/results");
 });
 
 app.get("/players/:player", isAuthenticated, function(req,res){
@@ -122,8 +110,8 @@ app.get("/logout",function(req, res){
 	res.redirect("/");
 });
 
-app.get("/", function(req,res) {
-	res.render("index");
+app.get("/", retreiveAllPlayers, retreiveAllDecks, function(req,res) {
+	res.render("index",{players:0});
 });
 
 function isAuthenticated(req,res,next) {
@@ -145,6 +133,20 @@ function createDeck(req, res, next) {
 			console.log("Deck added");
 			req.flash("success", "New Deck Created");
 			res.locals.newDeck = newDeck;
+			return next();
+		}
+	});
+}
+
+function createResult(req, res, next) {
+	Result.create(req.body.result, function(err, newResult) {
+		if(err) {
+			console.log(err);
+			req.flash("error", "Result not logged");
+			res.redirect("/");
+		} else {
+			console.log("Deck added");
+			req.flash("success", "Result logged");
 			return next();
 		}
 	});
@@ -174,6 +176,7 @@ function retreiveAllPlayers(req, res, next) {
 			console.log(err);
 		} else {
 			console.log(foundUsers);
+			foundUsers.unshift({"username":"--Default--"});
 			res.locals.allPlayers = foundUsers;
 			return next();
 		}
@@ -186,7 +189,20 @@ function retreiveAllDecks(req, res, next) {
 			console.log(err);
 		} else {
 			console.log(foundDecks);
+			foundDecks.unshift({"name":"--Default--"});
 			res.locals.allDecks = foundDecks;
+			return next();
+		}
+	});
+}
+
+function retreiveAllResults(req, res, next) {
+	Result.find({}, function(err, foundResults) {
+		if(err) {
+			console.log(err);
+		} else {
+			console.log(foundResults);
+			res.locals.allResults = foundResults;
 			return next();
 		}
 	});

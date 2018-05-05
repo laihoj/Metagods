@@ -20,7 +20,7 @@
 							<td><a href="/decks/<%= decks[i].name %>"><%= decks[i].name %></a></td>
 							<td><a href="<%=decks[i].tappedout%>" ><%= decks[i].name %></td>
 							<% if(currentUser) { %>
-							<td>X</td>
+							<td><input type="checkbox"></td>
 							<% } %>
 						</tr>
 					<% } %>

@@ -1,0 +1,36 @@
+<% include ./partials/header %>
+
+<div class="section data">
+	<div class="container">
+		<div class="row">
+			<table class="match-result u-full-width">
+			<h1>Results</h1>
+			  <thead>
+			    <tr>
+			      <th>#</th>
+			      <th>Turns</th>
+			      <th>Player</th>
+			      <th>Deck</th>
+			      <th>Starter</th>
+			      <th>Winner</th>
+			    </tr>
+			  </thead>
+			  <tbody>
+			 		<% for(var i = 0; i < allResults.length; i++) { %>
+			  			<tr>
+							<td><%= allResults[i].match %></td>
+							<td><%= allResults[i].turns %></td>
+							<td><%= allResults[i].player %></td>
+							<td><%= allResults[i].deck %></td>
+							<td><%= allResults[i].starter %></td>
+							<td><%= allResults[i].winner %></td>
+						</tr>
+					<% } %>
+			  </tbody>
+			</table>
+		</div>
+	</div>
+</div>
+
+
+<% include ./partials/footer %>

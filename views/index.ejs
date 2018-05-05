@@ -1,14 +1,11 @@
 <% include ./partials/header %>
 
-
-
-
 <div class="container">
 	<div class="section match">
-		<h1>Enter goldfish NOT FUNCTIONAL</h1>
-		<form action="#" method="post">
+		<h1>Enter goldfish</h1>
+		<form action="/results" method="post">
 			<label for="turns">Winning Turn: </label>
-			<input type="number" value="3" min="0" id="turns">
+			<input type="number" value="3" min="0" name="result[turns]">
 			<br>
 			<br>
 			<div>
@@ -22,8 +19,6 @@
 						</tr>
 					</thead>
 					<tbody>
-					<% var players = 0; %>
-					<% var playerNames = ["-player-", "Jaakko", "Rynde", "Matias", "Valtteri", "Tommi", "Markus", "Jonne", "Joel", "Tino"]; %>
 					<% include partials/playermatchrow %>
 					</tbody>
 				</table>
@@ -39,16 +34,13 @@
 <br><br>
 
 <div class="section filler">
-	<div class="container">
-		<div class="row">
-			<h4><i>Doomsday pass</i></h4>
-		</div>
+	<div class="row">
+		<h4><i>Kyllä löytyy t markus</i></h4>
 	</div>
 </div>
 
-
-<div class="section match">
-	<div class="container">
+<div class="container">
+	<div class="section match">
 		<div class="row">
 			<div class="u-full-width">
 				<% include ./partials/newdeckform %>
@@ -57,42 +49,42 @@
 	</div>
 </div>
 
-
 <div class="section filler">
-	<div class="container">
-		<div class="row">
-			<h4><i>Kyllä löytyy t markus</i></h4>
-		</div>
+	<div class="row">
+		<h4><i>Psykoosit tulilla t rynde</i></h4>
 	</div>
 </div>
 
-
-<div class="section matches">
-	<div class="container">
-		<div class="row">
-			<table class="u-full-width">
-			  <thead>
-			    <tr>
-			      <th>#</th>
-			      <th>Meta</th>
-			      <th>Turns</th>
-			      <th>Players</th>
-			      <th>Date</th>
-			      <th>Winner</th>
-			    </tr>
-			  </thead>
-			  <tbody>
-			  </tbody>
-			</table>
-		</div>
-	</div>
-</div>
-
-<div class="section filler">
-	<div class="container">
-		<div class="row">
-          <h4><i>Psykoosit tulilla t rynde</i></h4>
-		</div>
+<div class="container">
+	<div class="section match">
+		<h1>New Match Details NOT FUNCTIONAL</h1>
+		<form action="#" method="post">
+			<label for="turns">Winning Turn: </label>
+			<input type="number" value="3" min="0" id="turns" name="turns">
+			<br>
+			<br>
+			<div>
+				<table class="match-result u-full-width" id="newmatch">
+					<thead>
+						<tr>
+							<th>Player</th>
+							<th>Decklist</th>
+							<th>Starter</th>
+							<th>Winner</th>
+						</tr>
+					</thead>
+					<tbody>
+						<% include partials/playermatchrow %>
+						<% include partials/playermatchrow %>
+						<% include partials/playermatchrow %>
+						<% include partials/playermatchrow %>
+					</tbody>
+				</table>
+			</div>
+			<br>
+			<input class="button-primary" type="reset" value="Reset">
+			<input class="button-primary" type="submit" value="Submit">
+		</form>
 	</div>
 </div>
 
