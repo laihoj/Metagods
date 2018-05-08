@@ -11,19 +11,21 @@
 			      <th>Turns</th>
 			      <th>Player</th>
 			      <th>Deck</th>
+			      <th>Mulligan</th>
 			      <th>Starter</th>
 			      <th>Winner</th>
 			    </tr>
 			  </thead>
 			  <tbody>
-			 		<% for(var i = 0; i < allResults.length; i++) { %>
+			 		<% for(var i = 0; i < results.length; i++) { %>
 			  			<tr>
-							<td><%= allResults[i].match %></td>
-							<td><%= allResults[i].turns %></td>
-							<td><%= allResults[i].player %></td>
-							<td><%= allResults[i].deck %></td>
-							<td><%= allResults[i].starter %></td>
-							<td><%= allResults[i].winner %></td>
+							<td><%= results[i].match %></td>
+							<td><%= results[i].turns %></td>
+							<td><%= results[i].player %></td>
+							<td><%= results[i].deck %></td>
+							<td><%= results[i].hand %></td>
+							<td><%= results[i].starter %></td>
+							<td><%= results[i].winner %></td>
 						</tr>
 					<% } %>
 			  </tbody>

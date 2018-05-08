@@ -5,6 +5,7 @@ var bodyParser 				= require("body-parser"),
 	passport 				= require("passport"),
 	LocalStrategy 			= require("passport-local"),
 	passportLocalMongoose 	= require("passport-local-mongoose"),
+	request					= require("request");
 	app						= express();
 
 app.use(require("express-session")({
@@ -23,6 +24,7 @@ app.use(flash());
 var url = process.env.DATABASEURL || "mongodb://jaakko:laiho@ds261929.mlab.com:61929/metagods";
 mongoose.connect(url);
 
+var domain = process.env.DOMAIN || "localhost:3000";
 app.use(function(req, res, next){
 	res.locals.currentUser = req.user;
 	res.locals.error = req.flash("error");
@@ -47,19 +49,35 @@ app.get("/api/decks", retreiveAllDecks, function(req,res) {
 	res.send(res.locals.allDecks);
 });
 
-app.get("/decks", retreiveAllDecks, function(req,res){
-	res.render("decks",{decks:res.locals.allDecks});
+app.get("/api/results", retreiveAllResults, function(req,res) {
+	res.send(res.locals.allResults);
+});
+
+app.get("/api/players", retreiveAllPlayers, function(req,res) {
+	res.send(res.locals.allPlayers);
+});
+
+app.get("/decks", function(req,res){
+	request("http://" + domain + "/api/decks", function(err, response, body) {
+		res.render("decks",{decks:JSON.parse(body)});
+	});
 });
 
 app.post("/decks", createDeck, isAuthenticated, addDeckToPlayerFavourites, function(req,res){
 	res.redirect("/decks");
 });
 
-app.get("/results", retreiveAllResults, function(req, res) {
-	res.render("results");
+app.get("/results", function(req, res) {
+	request("http://" + domain + "/api/results", function(err, response, body) {
+		res.render("results",{results:JSON.parse(body)});
+	});
 });
 
-app.post("/results", createResult, function(req, res) {
+// app.post("/results", createResult, function(req, res) {
+// 	res.redirect("/results");
+// });
+
+app.post("/matches", createMatch, function(req, res) {
 	res.redirect("/results");
 });
 
@@ -138,18 +156,52 @@ function createDeck(req, res, next) {
 	});
 }
 
-function createResult(req, res, next) {
-	Result.create(req.body.result, function(err, newResult) {
+
+
+function createMatch(req, res, next) {
+	Result.count({}, function(err, Count) {
 		if(err) {
 			console.log(err);
-			req.flash("error", "Result not logged");
 			res.redirect("/");
 		} else {
-			console.log("Deck added");
-			req.flash("success", "Result logged");
-			return next();
+			Count ++;
+			req.body.result.match = Count;
+			createResult(req.body.result, req.body.numberOfPlayers, next);
 		}
 	});
+}
+
+//recursively create results. 
+//better than a for loop, because next() called only once
+function createResult(results, n, next) {
+	if(n <= 0) {
+		return next();
+	} else {
+		var result = {
+			match: results.match,
+			player: results["player"][n - 1],
+			deck: results["deck"][n - 1],
+			hand: results["hand"][n - 1],
+			/*
+			PROBABLE THEORY:
+			pretty fucking shitty problem, probably worth reconsidering schemas.
+			Because form has multiple inputs with same name, those inputs are
+			under that key in an array. Unless of course the inputs are checkboxes,
+			because checkbox values are not sent _at all_ if not checked
+			*/
+			// starter: results["starter"][n - 1],
+			// winner: results["winner"][n - 1]
+		}
+		Result.create(result, function(err, newResult) {
+			if(err) {
+				console.log(err);
+				res.redirect("/");
+			} else {
+				console.log("Result logged");
+				createResult(results, n - 1, next);
+			}
+		});
+	}
 }
 
 function addDeckToPlayerFavourites(req, res, next) {
