@@ -1,0 +1,23 @@
+<% include ./partials/header %>
+
+<div class="section data">
+	<div class="container">
+		<div class="row">
+			<div class="section match">
+				<h1><%= deck.name %></h1>
+				
+				<p>To tappedout.net: <a href="<%=deck.tappedout%>" ><%= deck.tappedout %></a></p>
+				<p>Deck author: <a href="<%=deck.author%>" ><%= deck.author %></a></p>
+			</div>
+			<div class="section match">
+				<h1>Statistics</h1>
+				<p>Lifetime win rate: 25% (placeholder)</p>
+				<p>Best pilot: <a href="../players/default">default</a> (placeholder)</p>
+				<p>Best meta: porometa (placeholder)</p>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<% include ./partials/footer %>

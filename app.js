@@ -1,3 +1,10 @@
+/*
+TODO:
+- Deck favouriting
+- Dynamic match deck options
+- Implement match / meta (persistence)
+- enter tappedout based only on name
+*/
 var bodyParser 				= require("body-parser"),
 	mongoose 				= require("mongoose"),
 	flash					= require("connect-flash"),
@@ -5,7 +12,8 @@ var bodyParser 				= require("body-parser"),
 	passport 				= require("passport"),
 	LocalStrategy 			= require("passport-local"),
 	passportLocalMongoose 	= require("passport-local-mongoose"),
-	request					= require("request");
+	request					= require("request"),
+	methodOverride			= require("method-override"),
 	app						= express();
 
 app.use(require("express-session")({
@@ -19,6 +27,7 @@ app.use(passport.session());
 app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(express.static("public"));
+app.use(methodOverride("_method"));
 app.use(flash());
 
 var url = process.env.DATABASEURL || "mongodb://jaakko:laiho@ds261929.mlab.com:61929/metagods";
@@ -41,12 +50,37 @@ passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
+app.get("/faqs", function(req, res) {
+	res.render("faqs");
+});
+
 app.get("/api", function(req,res) {
-	res.send("API");
+	res.render("api");
 });
 
 app.get("/api/decks", retreiveAllDecks, function(req,res) {
 	res.send(res.locals.allDecks);
+});
+
+app.get("/api/decks/new", function(req, res) {
+	res.render("partials/newdeckform");
+});
+
+app.get("/api/results/new", function(req, res) {
+	res.send("new result form");
+	// res.render("partials/newdeckform");
+});
+
+app.get("/api/players/new", function(req, res) {
+	res.render("partials/registerform");
+});
+
+app.get("/api/decks/:deck", function(req,res) {
+	Deck.findOne({name:req.params.deck}, function(err, foundDeck){
+		console.log("error", err);
+		console.log("Fetched " + foundDeck);
+		res.send(foundDeck);
+	});
 });
 
 app.get("/api/results", retreiveAllResults, function(req,res) {
@@ -57,14 +91,50 @@ app.get("/api/players", retreiveAllPlayers, function(req,res) {
 	res.send(res.locals.allPlayers);
 });
 
+
+
+//figure out how to pass data from a form onwards
+// app.put("/api/players/:player/", isAuthenticated, function(req,res) {
+// 	User.findOneAndUpdate({username:req.params.player}, req.body.player, function(err, updatedPlayer) {
+// 		if(err) {
+// 			req.flash("error", "Something went wrong");
+// 			res.redirect("/");
+// 		} else {
+// 			req.flash("success", "Deck favourites updated");
+// 			res.send(updatedPlayer);
+// 		}
+// 	});
+// });
+
 app.get("/decks", function(req,res){
 	request("http://" + domain + "/api/decks", function(err, response, body) {
 		res.render("decks",{decks:JSON.parse(body)});
 	});
 });
 
+app.get("/decks/new", function(req, res) {
+	res.render("newdeck");
+});
+
 app.post("/decks", createDeck, isAuthenticated, addDeckToPlayerFavourites, function(req,res){
 	res.redirect("/decks");
+});
+
+app.get("/decks/:deck", function(req, res){
+	request("http://" + domain + "/api/decks/" + req.params.deck, function(err, response, body) {
+		res.render("deck",{deck:JSON.parse(body)});
+	});
+});
+
+app.put("/players/:player/", function(req, res) {
+	User.findOneAndUpdate({username:req.params.player}, req.body.player, function(err, updatedPlayer) {
+		if(err) {
+			res.redirect("/");
+		} else {
+			req.flash("success", "Deck favourites updated");
+			res.redirect("/decks");
+		}
+	});
 });
 
 app.get("/results", function(req, res) {
@@ -73,9 +143,27 @@ app.get("/results", function(req, res) {
 	});
 });
 
-// app.post("/results", createResult, function(req, res) {
-// 	res.redirect("/results");
+// app.get("/results/new", retreiveAllDecks, retreiveAllPlayers, function(req, res) {
+// 	res.locals.allPlayers.forEach(function(player){
+// 		res.cookie(player.username, player.decks);
+// 	})
+// 	res.locals.allDecks.forEach(function(deck){
+// 		res.cookie(deck.name, deck.tappedout);
+// 	})
+		
+	
+// 	// res.cookie("data", res.locals.allPlayers);
+// 	res.render("newresult",{players:0});
 // });
+
+app.get("/results/new", retreiveAllDecks, retreiveAllPlayers, function(req, res) {
+	request("http://" + domain + "/api/players", function(err, response, body) {
+		JSON.parse(body).forEach(function(player){
+			res.cookie(player.username, player.decks);
+		})
+		res.render("newresult",{players:0});
+	});
+});
 
 app.post("/matches", createMatch, function(req, res) {
 	res.redirect("/results");
@@ -177,20 +265,28 @@ function createResult(results, n, next) {
 	if(n <= 0) {
 		return next();
 	} else {
-		var result = {
-			match: results.match,
-			player: results["player"][n - 1],
-			deck: results["deck"][n - 1],
-			hand: results["hand"][n - 1],
-			/*
-			PROBABLE THEORY:
-			pretty fucking shitty problem, probably worth reconsidering schemas.
-			Because form has multiple inputs with same name, those inputs are
-			under that key in an array. Unless of course the inputs are checkboxes,
-			because checkbox values are not sent _at all_ if not checked
-			*/
-			// starter: results["starter"][n - 1],
-			// winner: results["winner"][n - 1]
+		var starter = results["starter"] == n;
+		var winner = results["winner"] == n;
+		if(Array.isArray(results["player"])) {
+			var result = {
+				match: results.match,
+				turns: results["turns"],
+				player: results["player"][n - 1],
+				deck: results["deck"][n - 1],
+				hand: results["hand"][n - 1],
+				starter: starter,
+				winner: winner
+			}
+		} else {
+			var result = {
+				match: results.match,
+				turns: results["turns"],
+				player: results["player"],
+				deck: results["deck"],
+				hand: results["hand"],
+				starter: starter,
+				winner: winner
+			}
 		}
 		Result.create(result, function(err, newResult) {
 			if(err) {
@@ -227,7 +323,6 @@ function retreiveAllPlayers(req, res, next) {
 		if(err) {
 			console.log(err);
 		} else {
-			console.log(foundUsers);
 			foundUsers.unshift({"username":"--Default--"});
 			res.locals.allPlayers = foundUsers;
 			return next();
@@ -240,7 +335,6 @@ function retreiveAllDecks(req, res, next) {
 		if(err) {
 			console.log(err);
 		} else {
-			console.log(foundDecks);
 			foundDecks.unshift({"name":"--Default--"});
 			res.locals.allDecks = foundDecks;
 			return next();
@@ -253,7 +347,7 @@ function retreiveAllResults(req, res, next) {
 		if(err) {
 			console.log(err);
 		} else {
-			console.log(foundResults);
+			// console.log(foundResults);
 			res.locals.allResults = foundResults;
 			return next();
 		}

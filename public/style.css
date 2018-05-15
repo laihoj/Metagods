@@ -7,11 +7,17 @@
   margin-bottom: 1.2rem;
 }
 
+.faqs {
+  text-align: left;
+}
+
 .hero {
   background-image: url('https://227rsi2stdr53e3wto2skssd7xe-wpengine.netdna-ssl.com/wp-content/uploads/2016/02/ad-nauseam-617x280.jpg');
   background-size: cover;
   color: #fff;
-  padding-bottom: 5rem;
+  /*color: #fff;*/
+  padding-bottom: 2rem;
+  /*opacity: 0.5;*/
 }
 
 .hero::after {
