@@ -33,13 +33,26 @@
 
 .match {
   box-shadow: 0 3px 5px 3px rgba(36, 31, 32, .3);
-  padding: 1rem;
+  /*padding: 1rem 0rem 1rem;*/
   margin: 2rem;
   border-radius: 15px;
 }
 
 .match-result td {
 	padding: 1rem;
+}
+
+.get-started {
+  text-align: center;
+}
+
+.about p {
+  text-align:justify;
+}
+
+.footer {
+  padding-top:2rem;
+  background-color: #808080;
 }
 
 .filler {
@@ -51,7 +64,15 @@
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
 }
 
-/*Cherry picked some bootstrap goodies*/
+/***********************************
+Cherry picked some bootstrap goodies
+************************************/
+
+.img-fluid {
+  max-width: 100%;
+  height: auto;
+}
+
 .alert {
   position: relative;
   padding: 0.75rem 1.25rem;

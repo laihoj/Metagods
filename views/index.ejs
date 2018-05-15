@@ -1,39 +1,21 @@
 <% include ./partials/header %>
 
-<div class="section match">
+<div class="section get-started">
 	<div class="container">
-		<h1>Enter goldfish</h1>
-		<form action="/matches" method="post">
-		<input type="number" value="1" name="numberOfPlayers" hidden>
-			<label for="turns">Winning Turn: </label>
-			<input type="number" value="3" min="0" name="result[turns]">
-			<br>
-			<br>
-			<div>
-				<table class="match-result u-full-width" id="newmatch">
-					<thead>
-						<tr>
-							<th>Player</th>
-							<th>Decklist</th>
-							<th>Hand</th>
-							<th>Starter</th>
-							<th>Winner</th>
-						</tr>
-					</thead>
-					<tbody>
-					<% include partials/playermatchrow %>
-					</tbody>
-				</table>
-			</div>
-
-			<br>
-			<input class="button-primary" type="reset" value="Reset">
-			<input class="button-primary" type="submit" value="Submit">
+		<h1>Get Started</h1>
+		<form action="/register" method="get">
+		<input type="submit" value="New Player">
 		</form>
 
+		<form action="/decks/new" method="get">
+		<input type="submit" value="New Deck">
+		</form>
+
+		<form action="/results/new" method="get">
+		<input type="submit" value="New Result">
+		</form>
 	</div>
 </div>
-<br><br>
 
 <div class="section filler">
 	<div class="row">
@@ -41,11 +23,15 @@
 	</div>
 </div>
 
-<div class="section match">
+<div class="section about">
 	<div class="container">
 		<div class="row">
-			<div class="u-full-width">
-				<% include ./partials/newdeckform %>
+			<div class="three columns">
+			<img class="img-fluid" src="https://i.imgur.com/RsjbhOm.png">
+			</div>
+			<div class="nine columns">
+			<h1>Metagods</h1>
+			<p>For cEDH players with an interest to grow in the game. Register your deck, set up a meta, and get playing (and logging results)!</p><p>At Metagods you will find all the data on your performance. Your personal all-time winrate, the winrate of your deck on any given day, successfulness of a particular deck in a particular meta piloted by a particular player... You name it!</p>
 			</div>
 		</div>
 	</div>
@@ -57,39 +43,6 @@
 	</div>
 </div>
 
-<div class="section match">
-	<div class="container">
-		<h1>New Match Details</h1>
-		<form action="/matches" method="post">
-			<input type="number" value="4" name="numberOfPlayers" hidden>
-			<label for="turns">Winning Turn: </label>
-			<input type="number" value="3" min="0" id="turns" name="result[turns]">
-			<br>
-			<br>
-			<div>
-				<table class="match-result u-full-width" id="newmatch">
-					<thead>
-						<tr>
-							<th>Player</th>
-							<th>Decklist</th>
-							<th>Hand</th>
-							<th>Starter</th>
-							<th>Winner</th>
-						</tr>
-					</thead>
-					<tbody>
-						<% include partials/playermatchrow %>
-						<% include partials/playermatchrow %>
-						<% include partials/playermatchrow %>
-						<% include partials/playermatchrow %>
-					</tbody>
-				</table>
-			</div>
-			<br>
-			<input class="button-primary" type="reset" value="Reset">
-			<input class="button-primary" type="submit" value="Submit">
-		</form>
-	</div>
-</div>
+
 
 <% include ./partials/footer %>

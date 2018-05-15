@@ -335,7 +335,7 @@ function retreiveAllDecks(req, res, next) {
 		if(err) {
 			console.log(err);
 		} else {
-			foundDecks.unshift({"name":"--Default--"});
+			// foundDecks.unshift({"name":"--Default--"});
 			res.locals.allDecks = foundDecks;
 			return next();
 		}
