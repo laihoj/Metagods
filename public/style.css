@@ -32,10 +32,11 @@
 }
 
 .match {
-  box-shadow: 0 3px 5px 3px rgba(36, 31, 32, .3);
+  /*box-shadow: 0 3px 5px 3px rgba(36, 31, 32, .3);*/
+  box-shadow: 0 2px 3px 2px rgba(36, 31, 32, .3);
   /*padding: 1rem 0rem 1rem;*/
   margin: 2rem;
-  border-radius: 15px;
+  border-radius: 10px;
 }
 
 .match-result td {
@@ -52,7 +53,9 @@
 
 .footer {
   padding-top:2rem;
-  background-color: #808080;
+  background-color: rgb(150, 150, 150);
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.3);
+
 }
 
 .filler {
