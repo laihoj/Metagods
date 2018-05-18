@@ -10,16 +10,9 @@
 						<li><a href="/decks/<%= currentUser.decks[i] %>"><%= currentUser.decks[i] %></a></li>
 					<% } %>
 				</ul>
-			</div>
-		</div>
-	</div>
-</div>
-
-<div class="container">
-	<div class="section match">
-		<div class="row">
-			<div class="u-full-width">
-				<% include ./partials/newdeckform %>
+				<form action="/decks/new" method="get">
+				<input type="submit" value="New Deck">
+				</form>
 			</div>
 		</div>
 	</div>

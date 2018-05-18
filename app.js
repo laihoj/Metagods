@@ -108,7 +108,17 @@ app.get("/api/players", retreiveAllPlayers, function(req,res) {
 
 app.get("/decks", function(req,res){
 	request("http://" + domain + "/api/decks", function(err, response, body) {
-		res.render("decks",{decks:JSON.parse(body)});
+		var decks = JSON.parse(body);
+		if(req.isAuthenticated()) {
+			decks.forEach(function(deck){
+				req.user.decks.forEach(function(favouriteDeck){
+					if(deck.name == favouriteDeck) {
+						deck["favourite"] = true;
+					}
+				});
+			});
+		}
+		res.render("decks",{decks:decks});
 	});
 });
 
@@ -166,6 +176,7 @@ app.get("/results/new", retreiveAllDecks, retreiveAllPlayers, function(req, res)
 });
 
 app.post("/matches", createMatch, function(req, res) {
+	req.flash("success", "Successfully published match result");
 	res.redirect("/results/new");
 });
 
