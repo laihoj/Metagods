@@ -1,0 +1,20 @@
+<% players += 1; %>
+<tr>
+	<td>
+		<select class="u-full-width" name="result[player]" id="player<%=players%>pilot">
+			<% for(var i = 0; i < allPlayers.length; i++) { %>
+				<option value="<%= allPlayers[i].username %>"><%= allPlayers[i].username %></option>
+			<% } %>
+		</select>
+	</td>
+	<td>
+		<select class="u-full-width" name="result[deck]" id="player<%=players%>deck">
+			<% for(var i = 0; i < allDecks.length; i++) { %>
+				<option value="<%= allDecks[i].name %>"><%= allDecks[i].name %></option>
+			<% } %>
+		</select>
+	</td>
+	<td><input type="number" name="result[hand]" min="0" max="7" value="7"></td>
+	<td><input id="playername" type="checkbox" name="result[starter]" value="<%= players %>"></td>
+	<td><input id="playername" type="checkbox" name="result[winner]" value="<%= players %>"></td>
+</tr>

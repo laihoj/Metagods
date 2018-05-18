@@ -1,39 +1,5 @@
 <% include ./partials/header %>
 
-<div class="section match">
-	<div class="container">
-		<div class="row">
-		<h1>Enter goldfish</h1>
-		<form action="/matches" method="post">
-		<input type="number" value="1" name="numberOfPlayers" hidden>
-			<label for="turns">Winning Turn: </label>
-			<input type="number" value="3" min="0" name="result[turns]">
-			<br>
-			<br>
-			<div>
-				<table class="match-result u-full-width" id="newmatch">
-					<thead>
-						<tr>
-							<th>Player</th>
-							<th>Decklist</th>
-							<th>Hand</th>
-							<th>Starter</th>
-							<th>Winner</th>
-						</tr>
-					</thead>
-					<tbody>
-					<% include partials/playermatchrow %>
-					</tbody>
-				</table>
-			</div>
-
-			<br>
-			<input class="button-primary" type="reset" value="Reset">
-			<input class="button-primary" type="submit" value="Submit">
-		</form>
-	</div>
-	</div>
-</div>
 
 <div class="section match">
 	<div class="container">
@@ -45,23 +11,13 @@
 			<br>
 			<br>
 			<div>
-				<table class="match-result u-full-width" id="newmatch">
-					<thead>
-						<tr>
-							<th>Player</th>
-							<th>Decklist</th>
-							<th>Hand</th>
-							<th>Starter</th>
-							<th>Winner</th>
-						</tr>
-					</thead>
-					<tbody>
-						<% include partials/playermatchrow %>
-						<% include partials/playermatchrow %>
-						<% include partials/playermatchrow %>
-						<% include partials/playermatchrow %>
-					</tbody>
-				</table>
+
+			<div class="row">
+			<% include partials/playermatchrow %>
+			<% include partials/playermatchrow %>
+			<% include partials/playermatchrow %>
+			<% include partials/playermatchrow %>
+			</div>
 			</div>
 			<br>
 			<input class="button-primary" type="reset" value="Reset">

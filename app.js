@@ -166,7 +166,7 @@ app.get("/results/new", retreiveAllDecks, retreiveAllPlayers, function(req, res)
 });
 
 app.post("/matches", createMatch, function(req, res) {
-	res.redirect("/results");
+	res.redirect("/results/new");
 });
 
 app.get("/players/:player", isAuthenticated, function(req,res){
@@ -254,19 +254,19 @@ function createMatch(req, res, next) {
 		} else {
 			Count ++;
 			req.body.result.match = Count;
-			createResult(req.body.result, req.body.numberOfPlayers, next);
+			createResult(req.body.result, req.body.numberOfPlayers, req.body.numberOfPlayers, next);
 		}
 	});
 }
 
 //recursively create results. 
 //better than a for loop, because next() called only once
-function createResult(results, n, next) {
+function createResult(results, n, numberOfPlayers, next) {
 	if(n <= 0) {
 		return next();
 	} else {
-		var starter = results["starter"] == n;
-		var winner = results["winner"] == n;
+		var starter = results["starter"] == numberOfPlayers - n + 1;
+		var winner = results["winner"] == numberOfPlayers - n + 1;
 		if(Array.isArray(results["player"])) {
 			var result = {
 				match: results.match,
@@ -294,7 +294,7 @@ function createResult(results, n, next) {
 				res.redirect("/");
 			} else {
 				console.log("Result logged");
-				createResult(results, n - 1, next);
+				createResult(results, n - 1, numberOfPlayers, next);
 			}
 		});
 	}

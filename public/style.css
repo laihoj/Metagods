@@ -1,3 +1,26 @@
+.player-badge {
+  background-color: rgb(243, 229, 171);
+  border-radius: 10px;
+  height: 40%;
+  width: 46%;
+  margin: 1%;
+  padding: 1%;
+  float: left;
+  text-align: left;
+}
+
+.player-badge div div {
+  padding:4px 0 4px;
+}
+
+.select {
+  width: 80%;
+}
+
+/*.winner-starter {
+  width: 40%;
+}*/
+
 .section {
   padding: 8rem 0 7rem;
   text-align: center;
