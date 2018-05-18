@@ -7,32 +7,11 @@
 		<% if(currentUser) { %>
 			<form action="/players/<%= currentUser.username %>/?_method=PUT" method="post" id="favouritesForm"></form>
 			<input type="hidden" name="player[username]" value="<%= currentUser.username %>" form="favouritesForm">
-			<!--
-			<table class="match-result u-full-width">
-			<h1>Favourites</h1>
-				<thead>
-			    	<tr>
-				    	<th>Deck</th>
-				    	<th>Favourited</th>
-					</tr>
-			  	</thead>
-			  <tbody>
-		 		<% for(var i = 0; i < currentUser.decks.length; i++) { %>
-		  			<tr>
-						<td><a href="/decks/<%= currentUser.decks[i] %>"><%= currentUser.decks[i] %></a></td>
-						<td><input onchange="this.form.submit()" type="checkbox" name="player[decks]" value="<%= currentUser.decks[i] %>" checked form="favouritesForm"></td>
-					</tr>
-				<% } %>
-				</tbody>
-			</table>
-			-->
 	    <% } %>
 
-<!--
 		<form action="/decks/new" method="get">
 		<input type="submit" value="Add new deck">
 		</form>
--->
 
 			<table class="match-result">
 			<h1>Decks</h1>
@@ -51,12 +30,12 @@
 							<td><a href="/decks/<%= decks[i].name %>"><%= decks[i].name %></a></td>
 							<td><a href="<%=decks[i].tappedout%>" ><%= decks[i].tappedout %></td>
 							<% if(currentUser) { %>
-							<td><input onchange="this.form.submit()" type="checkbox" name="player[decks]" value="<%= decks[i].name %>" form="favouritesForm"
-							 <% if(decks[i].favourite) { %>
-							checked></td>
-							<% } else { %>
-							></td>
-							<% } %>
+								<td><input onchange="this.form.submit()" type="checkbox" name="player[decks]" value="<%= decks[i].name %>" form="favouritesForm"
+								 <% if(decks[i].favourite) { %>
+									checked></td>
+								<% } else { %>
+								></td>
+									<% } %>
 							<% } %>
 						</tr>
 					<% } %>
