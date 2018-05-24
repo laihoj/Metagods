@@ -1,37 +1,44 @@
-.player-badge {
-  background-color: rgb(243, 229, 171);
-  border-radius: 10px;
-  height: 40%;
-  width: 46%;
-  margin: 1%;
-  padding: 1%;
-  float: left;
-  text-align: left;
+input[type="submit"], input[type="reset"], input[type="button"]{
+  margin: 0.5rem;
+  width: 200px;
+  height: 70px;
 }
 
-.player-badge div div {
-  padding:4px 0 4px;
+td {
+  padding: 1rem;
 }
 
-.select {
-  width: 80%;
+.about p {
+  text-align:justify;
 }
 
-/*.winner-starter {
-  width: 40%;
-}*/
-
-.section {
-  padding: 4rem 0 3rem;
-  text-align: center;
-}
-.section-heading,
-.section-description {
-  margin-bottom: 1.2rem;
+.data {
+  overflow-x:auto;
 }
 
 .faqs {
   text-align: left;
+}
+
+.filler {
+  padding: 3rem;
+  background-color: rgb(243, 229, 171);
+  text-align: center;
+}
+
+.flash {
+  padding: 1rem 0 1rem;
+}
+
+.footer {
+  margin-top: 4rem;
+  padding-top: 2rem;
+  background-color: rgb(150, 150, 150);
+  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.get-started {
+  text-align: center;
 }
 
 .hero {
@@ -62,32 +69,39 @@
   border-radius: 10px;
 }
 
-td {
-	padding: 1rem;
-}
-
-.get-started {
-  text-align: center;
-}
-
-.about p {
-  text-align:justify;
-}
-
-.footer {
-  padding-top:2rem;
-  background-color: rgb(150, 150, 150);
-  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.3);
-
-}
-
-.filler {
-	background-color: rgb(243, 229, 171);
-}
-
 .navbar {
   background-color: rgb(243, 229, 171);
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+
+}
+
+.player-badge {
+  background-color: rgb(243, 229, 171);
+  border-radius: 10px;
+  height: 40%;
+  width: 46%;
+  margin: 1%;
+  padding: 1%;
+  float: left;
+  text-align: left;
+  box-shadow: 0 2px 3px 2px rgba(36, 31, 32, .3);
+}
+
+.player-badge div div {
+  padding:4px 0 4px;
+}
+
+.section {
+  padding: 3rem 0 3rem;
+  text-align: center;
+}
+.section-heading,
+.section-description {
+  margin-bottom: 1.2rem;
+}
+
+.select {
+  width: 80%;
 }
 
 /***********************************

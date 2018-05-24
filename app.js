@@ -44,8 +44,9 @@ app.use(function(req, res, next){
 var User = require("./models/user");
 var Deck = require("./models/deck");
 var Result = require("./models/result");
+// var Meta = require("./models/meta");
 
-
+app.use('/api', require("./routes/apiRoutes"));
 passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
@@ -54,54 +55,42 @@ app.get("/faqs", function(req, res) {
 	res.render("faqs");
 });
 
-app.get("/api", function(req,res) {
-	res.render("api");
-});
 
-app.get("/api/decks", retreiveAllDecks, function(req,res) {
-	res.send(res.locals.allDecks);
-});
 
-app.get("/api/decks/new", function(req, res) {
-	res.render("partials/newdeckform");
-});
+/*********************************************
+APP ROUTES
+*********************************************/
 
-app.get("/api/results/new", function(req, res) {
-	res.send("new result form");
-	// res.render("partials/newdeckform");
-});
 
-app.get("/api/players/new", function(req, res) {
-	res.render("partials/registerform");
-});
-
-app.get("/api/decks/:deck", function(req,res) {
-	Deck.findOne({name:req.params.deck}, function(err, foundDeck){
-		console.log("error", err);
-		console.log("Fetched " + foundDeck);
-		res.send(foundDeck);
-	});
-});
-
-app.get("/api/results", retreiveAllResults, function(req,res) {
-	res.send(res.locals.allResults);
-});
-
-app.get("/api/players", retreiveAllPlayers, function(req,res) {
-	res.send(res.locals.allPlayers);
-});
+// app.get("/metas", function(req,res){
+// 	request("http://" + domain + "/api/metas", function(err, response, body) {
+// 		res.render("metas",{metas:JSON.parse(body)});
+// 	});
+// });
 
 
 
-//figure out how to pass data from a form onwards
-// app.put("/api/players/:player/", isAuthenticated, function(req,res) {
+// app.get("/metas/new", function(req, res) {
+// 	res.redirect("/results/new");
+// });
+
+// app.post("/metas", createMeta, addMetaToCookie, function(req,res){
+// 	res.redirect("/metas");
+// });
+
+// app.get("/metas/:meta", function(req, res){
+// 	request("http://" + domain + "/api/decks/" + req.params.deck, function(err, response, body) {
+// 		res.render("deck",{deck:JSON.parse(body)});
+// 	});
+// });
+
+// app.put("/metas/:meta/", function(req, res) {
 // 	User.findOneAndUpdate({username:req.params.player}, req.body.player, function(err, updatedPlayer) {
 // 		if(err) {
-// 			req.flash("error", "Something went wrong");
 // 			res.redirect("/");
 // 		} else {
 // 			req.flash("success", "Deck favourites updated");
-// 			res.send(updatedPlayer);
+// 			res.redirect("/decks");
 // 		}
 // 	});
 // });
@@ -227,9 +216,13 @@ app.get("/logout",function(req, res){
 	res.redirect("/");
 });
 
-app.get("/", retreiveAllPlayers, retreiveAllDecks, function(req,res) {
-	res.render("index",{players:0});
+app.get("/", function(req,res) {
+	res.render("index");
 });
+
+/*********************************************
+MIDDLEWARE
+*********************************************/
 
 function isAuthenticated(req,res,next) {
 	if(req.isAuthenticated()) {
@@ -238,6 +231,33 @@ function isAuthenticated(req,res,next) {
 	req.session.redirectTo = req.path;
 	req.flash("error", "Please login first");
 	res.redirect("/login");
+}
+
+function addMetaToCookie(req, res, next) {
+	// alert("addMetaToCookie NOT IMPLEMENTED");
+}
+
+function createMeta(req, res, next) {
+	var meta = [];
+	for(var i = 0; i < req.body.result['player'].length; i++) {
+		var player = {
+			"username":req.body.result['player'][i],
+			"deck":req.body.result['deck'][i],
+		}
+		meta.push(player);
+	}
+	console.log(meta);
+	Meta.create({"players":meta}, function(err, newMeta) {
+		if(err) {
+			req.flash("error", "Meta not saved");
+			res.redirect("/");
+		} else {
+			req.flash("success", "Meta saved");
+			res.locals.metagame = newMeta;
+			res.redirect("/results/new");
+		}
+	});
+	// alert("createMeta NOT IMPLEMENTED");
 }
 
 function createDeck(req, res, next) {
@@ -254,8 +274,6 @@ function createDeck(req, res, next) {
 		}
 	});
 }
-
-
 
 function createMatch(req, res, next) {
 	Result.count({}, function(err, Count) {
@@ -278,15 +296,17 @@ function createResult(results, n, numberOfPlayers, next) {
 	} else {
 		var starter = results["starter"] == numberOfPlayers - n + 1;
 		var winner = results["winner"] == numberOfPlayers - n + 1;
+		var time = Date.now();
 		if(Array.isArray(results["player"])) {
 			var result = {
 				match: results.match,
 				turns: results["turns"],
-				player: results["player"][n - 1],
-				deck: results["deck"][n - 1],
-				hand: results["hand"][n - 1],
+				player: results["player"][numberOfPlayers - n],
+				deck: results["deck"][numberOfPlayers - n],
+				hand: results["hand"][numberOfPlayers - n],
 				starter: starter,
-				winner: winner
+				winner: winner,
+				time: time
 			}
 		} else {
 			var result = {
@@ -296,7 +316,8 @@ function createResult(results, n, numberOfPlayers, next) {
 				deck: results["deck"],
 				hand: results["hand"],
 				starter: starter,
-				winner: winner
+				winner: winner,
+				time: time
 			}
 		}
 		Result.create(result, function(err, newResult) {

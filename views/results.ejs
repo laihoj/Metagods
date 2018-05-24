@@ -1,38 +1,40 @@
 <% include ./partials/header %>
 
-<div class="section data">
+<div class="section">
 	<div class="container">
 		<div class="row">
 			<form action="/results/new" method="get">
 			<input type="submit" value="Add new result">
 			</form>
-			<table class="match-result u-full-width">
 			<h1>Results</h1>
-			  <thead>
-			    <tr>
-			      <th>#</th>
-			      <th>Turns</th>
-			      <th>Player</th>
-			      <th>Deck</th>
-			      <th>Mulligan</th>
-			      <th>Starter</th>
-			      <th>Winner</th>
-			    </tr>
-			  </thead>
-			  <tbody>
-			 		<% for(var i = 0; i < results.length; i++) { %>
-			  			<tr>
-							<td><%= results[i].match %></td>
-							<td><%= results[i].turns %></td>
-							<td><%= results[i].player %></td>
-							<td><%= results[i].deck %></td>
-							<td><%= results[i].hand %></td>
-							<td><%= results[i].starter %></td>
-							<td><%= results[i].winner %></td>
+			<div class="data">
+				<table class="match-result u-full-width">
+					<thead>
+						<tr>
+							<th>#</th>
+							<th>Turns</th>
+							<th>Player</th>
+							<th>Deck</th>
+							<th>Mulligan</th>
+							<th>Starter</th>
+							<th>Winner</th>
 						</tr>
-					<% } %>
-			  </tbody>
-			</table>
+					</thead>
+					<tbody>
+				 		<% for(var i = 0; i < results.length; i++) { %>
+				  			<tr>
+								<td><%= results[i].match %></td>
+								<td><%= results[i].turns %></td>
+								<td><%= results[i].player %></td>
+								<td><%= results[i].deck %></td>
+								<td><%= results[i].hand %></td>
+								<td><%= results[i].starter %></td>
+								<td><%= results[i].winner %></td>
+							</tr>
+						<% } %>
+					</tbody>
+				</table>
+			</div>	
 		</div>
 	</div>
 </div>

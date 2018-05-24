@@ -7,7 +7,8 @@ var resultSchema = new mongoose.Schema({
 	player: String,
 	deck: String,
 	starter: Boolean,
-	winner: Boolean
+	winner: Boolean,
+	time: Date
 });
 
 module.exports = mongoose.model("Result", resultSchema);

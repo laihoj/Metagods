@@ -1,28 +1,9 @@
 <% include ./partials/header %>
 
 
-<div class="section ">
+<div class="section">
 	<div class="container">
-		<h1>New Match Details</h1>
-		<form action="/matches" method="post">
-			<input type="number" value="4" name="numberOfPlayers" hidden>
-			<label for="turns">Winning Turn: </label>
-			<input type="number" value="3" min="0" id="turns" name="result[turns]">
-			<br>
-			<br>
-			<div>
-
-			<div class="row">
-			<% include partials/playermatchrow %>
-			<% include partials/playermatchrow %>
-			<% include partials/playermatchrow %>
-			<% include partials/playermatchrow %>
-			</div>
-			</div>
-			<br>
-			<input class="button-primary" type="reset" value="Reset">
-			<input class="button-primary" type="submit" value="Submit">
-		</form>
+		<% include newmatchform %>
 	</div>
 </div>
 

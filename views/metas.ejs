@@ -1,0 +1,38 @@
+<% include ./partials/header %>
+
+<div class="section">
+	<div class="container">
+		<div class="row">
+		
+		<% if(currentUser) { %>
+			<form action="/players/<%= currentUser.username %>/?_method=PUT" method="post" id="favouritesForm"></form>
+			<input type="hidden" name="player[username]" value="<%= currentUser.username %>" form="favouritesForm">
+	    <% } %>
+
+		
+			<h1>Metas</h1>
+			<div class="data">
+				<table class="match-result u-full-width">
+					<thead>
+				    	<tr>
+				    		<th>Name</th>
+				    		<th>Players</th>
+				    		<th>Decks</th>
+				      		<% if(currentUser) { %>
+				      			<th>Favourited</th>
+				      		<% } %>
+				    	</tr>
+					</thead>
+					<tbody>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>
+
+<% if(currentUser) { %>
+	</form>
+<% } %>
+
+<% include ./partials/footer %>
