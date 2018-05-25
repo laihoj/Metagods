@@ -12,6 +12,47 @@ td {
   text-align:justify;
 }
 
+
+/******************************
+MOBILE STUFF
+*******************************/
+
+.button-overlay {
+  height:8rem;
+  width:8rem;
+  background-color: #33C3F0;
+  border-color: #33C3F0;
+  z-index:3000;
+}
+
+.fixed-lower-left {
+  position: fixed;
+  border-radius: 100% 100% 100% 40%;
+  margin-top:60vh;
+  margin-left:-45vw;
+}
+
+.fixed-lower-right {
+  position: fixed;
+  border-radius: 100% 100% 40% 100%;
+  margin-top:60vh;
+  margin-left:25vw;
+}
+
+.primary {
+  background-color: #33C3F0;
+  border-color: #33C3F0;
+}
+
+.basic {
+  background-color: transparent;
+  border:1px solid #bbb;
+}
+
+/******************************
+END
+*******************************/
+
 .data {
   overflow-x:auto;
 }

@@ -32,14 +32,14 @@ function addPlayer() {
 }
 
 function saveMatch() {
-  setCookie("player1pilot", document.forms[0][2].value);
-  setCookie("player1deck", document.forms[0][3].value);
-  setCookie("player2pilot", document.forms[0][7].value);
-  setCookie("player2deck", document.forms[0][8].value);
-  setCookie("player3pilot", document.forms[0][12].value);
-  setCookie("player3deck", document.forms[0][13].value);
-  setCookie("player4pilot", document.forms[0][17].value);
-  setCookie("player4deck", document.forms[0][18].value);
+  setCookie("player1pilot", document.forms[0][3].value);
+  setCookie("player1deck", document.forms[0][4].value);
+  setCookie("player2pilot", document.forms[0][8].value);
+  setCookie("player2deck", document.forms[0][9].value);
+  setCookie("player3pilot", document.forms[0][13].value);
+  setCookie("player3deck", document.forms[0][14].value);
+  setCookie("player4pilot", document.forms[0][18].value);
+  setCookie("player4deck", document.forms[0][19].value);
   // setCookie("form", document.forms[0].innerHTML);
   // document.forms['newMatchForm'].action = "/metas";
   // document.forms['newMatchForm'].target = "formResponse";
