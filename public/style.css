@@ -28,14 +28,14 @@ MOBILE STUFF
 .fixed-lower-left {
   position: fixed;
   border-radius: 100% 100% 100% 40%;
-  margin-top:60vh;
+  margin-top:65vh;
   margin-left:-45vw;
 }
 
 .fixed-lower-right {
   position: fixed;
   border-radius: 100% 100% 40% 100%;
-  margin-top:60vh;
+  margin-top:65vh;
   margin-left:25vw;
 }
 
