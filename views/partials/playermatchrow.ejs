@@ -22,7 +22,8 @@
 		<div class="container">
 			<i class="fas fa-hand-paper"></i>
 			<!--<i class="material-icons">filter_7</i>-->
-			<input type="number" name="result[hand]" min="0" max="7" value="7">
+			<input type="number" id="player<%=players%>hand" name="result[hand]" min="0" max="7" value="7">
+			<i class="fas fa-minus-circle" style="color:red;" onclick="document.getElementById('player<%=players%>hand').value--;" ></i>
 		</div>			
 	</div>
 	<div class="row">

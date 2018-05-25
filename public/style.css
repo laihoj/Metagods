@@ -4,6 +4,10 @@ input[type="submit"], input[type="reset"], input[type="button"]{
   height: 70px;
 }
 
+label {
+  display:inline-block;
+}
+
 td {
   padding: 1rem;
 }
@@ -20,23 +24,26 @@ MOBILE STUFF
 .button-overlay {
   height:8rem;
   width:8rem;
-  background-color: #33C3F0;
-  border-color: #33C3F0;
   z-index:3000;
+  border-radius: 100% 100% 100% 100%;
 }
 
-.fixed-lower-left {
+.fixed {
   position: fixed;
-  border-radius: 100% 100% 100% 40%;
-  margin-top:65vh;
-  margin-left:-45vw;
 }
 
-.fixed-lower-right {
-  position: fixed;
-  border-radius: 100% 100% 40% 100%;
-  margin-top:65vh;
-  margin-left:25vw;
+.bottom {
+  bottom: 5%;
+}
+
+.left {
+  left: 5%;
+  border-bottom-left-radius: 40%
+}
+
+.right {
+  right: 5%;
+  border-bottom-right-radius: 40% 
 }
 
 .primary {
@@ -52,6 +59,15 @@ MOBILE STUFF
 /******************************
 END
 *******************************/
+
+.button-mulligan {
+  width: 8rem !important;
+  height: 3rem !important;
+  display: inline-block !important;
+  text-align: left !important;
+  background-color: orange !important;
+  border-radius:100% !important;
+}
 
 .data {
   overflow-x:auto;
@@ -125,7 +141,7 @@ END
   padding: 1%;
   float: left;
   text-align: left;
-  box-shadow: 0 2px 3px 2px rgba(36, 31, 32, .3);
+  /*box-shadow: 0 2px 3px 2px rgba(36, 31, 32, .3);*/
 }
 
 .player-badge div div {

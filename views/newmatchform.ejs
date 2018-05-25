@@ -1,17 +1,14 @@
-
-
-<label for="turns"><h1>Winning Turn:</h1></label>
 <form id="newMatchForm" action="/matches" method="post">
 	<input type="number" value="4" name="numberOfPlayers" hidden>
+	<label for="turns">Winning Turn:</label>
 	<input type="number" value="3" min="0" id="turns" name="result[turns]">
-	<div>
-		<div class="row">
-			<% include partials/playermatchrow %>
-			<% include partials/playermatchrow %>
-			<% include partials/playermatchrow %>
-			<% include partials/playermatchrow %>
-		</div>
-	</div>
+	<i class="fas fa-plus-circle" style="color:green;" onclick="document.getElementById('turns').value++;" ></i>
+	<div class="row">
+		<% include partials/playermatchrow %>
+		<% include partials/playermatchrow %>
+		<% include partials/playermatchrow %>
+		<% include partials/playermatchrow %>
+	</div>	
 	<!--<button type="submit" class="button-overlay "><i class="fas fa-plus"></i></button>
 	<button class="button-overlay">Set as default</button>
 	<input class="button-primary" type="submit" value="Submit">
