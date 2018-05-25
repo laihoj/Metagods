@@ -45,7 +45,7 @@ MOBILE STUFF
 }
 
 .basic {
-  background-color: transparent;
+  background-color: white;
   border:1px solid #bbb;
 }
 
@@ -133,7 +133,7 @@ END
 }
 
 .section {
-  padding: 3rem 0 3rem;
+  padding: 0rem 0 3rem;
   text-align: center;
 }
 .section-heading,
