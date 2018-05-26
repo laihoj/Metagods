@@ -25,11 +25,12 @@ td {
 }
 
 .margin-left {
-  margin-left: 5%;
+  margin-left: 3%;
 }
 
-
-
+.form-meta-input {
+  padding-bottom: 1rem;
+}
 
 /* Forms
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
@@ -42,7 +43,10 @@ td {
   border: 1px solid #D1D1D1;
   border-radius: 4px;
   box-shadow: none;
-  box-sizing: border-box; }
+  box-sizing: border-box; 
+  font-size: 2rem;
+}
+
 /* Removes awkward default styles on some inputs for iOS */
 .input-extend {
 
@@ -52,7 +56,9 @@ td {
 .input-extend {
   min-height: 65px;
   padding-top: 6px;
-  padding-bottom: 6px; }
+  padding-bottom: 6px; 
+  padding: 6px !important;
+}
 .input-extend:focus {
 
   border: 1px solid #33C3F0;
@@ -71,14 +77,24 @@ MOBILE STUFF
   width:8rem;
   z-index:3000;
   border-radius: 100% 100% 100% 100%;
+  /*font-size: 3rem;*/
+  padding: 0px;
 }
 
-.expand-avatar {
+/*.expand-avatar {
   padding:2rem;
   height:5rem;
   width:5rem;
   border-radius: 50%;
   text-align: center;
+}*/
+.expand-player-button {
+  height:5rem;
+  width:5rem;
+  border-radius: 40% 100% 100% 40%;
+  padding: 0px;
+  font-size: 2rem;
+  font-weight: bold;
 }
 
 .fixed {
@@ -112,15 +128,6 @@ MOBILE STUFF
 /******************************
 END
 *******************************/
-
-.button-mulligan {
-  width: 8rem !important;
-  height: 3rem !important;
-  display: inline-block !important;
-  text-align: left !important;
-  background-color: orange !important;
-  border-radius:100% !important;
-}
 
 .data {
   overflow-x:auto;

@@ -12,27 +12,28 @@ https://stackoverflow.com/questions/21172889/express-send-a-page-and-custom-data
 */
 
 function fillFormWithCookie() {
+  // alert(getCookie("player1pilot").charAt(0).toUpperCase());
   document.getElementById("player1pilot").value = getCookie("player1pilot");
-    document.getElementById("player1deck").value = getCookie("player1deck");
-    document.getElementById("player2pilot").value = getCookie("player2pilot");
-    document.getElementById("player2deck").value = getCookie("player2deck");
-    document.getElementById("player3pilot").value = getCookie("player3pilot");
-    document.getElementById("player3deck").value = getCookie("player3deck");
-    document.getElementById("player4pilot").value = getCookie("player4pilot");
-    document.getElementById("player4deck").value = getCookie("player4deck");
+  document.getElementById("player1deck").value = getCookie("player1deck");
+  document.getElementById("player1firstletter").innerHTML = getCookie("player1pilot").charAt(0).toUpperCase();
+  document.getElementById("player2pilot").value = getCookie("player2pilot");
+  document.getElementById("player2deck").value = getCookie("player2deck");
+  document.getElementById("player2firstletter").innerHTML = getCookie("player2pilot").charAt(0).toUpperCase();
+  document.getElementById("player3pilot").value = getCookie("player3pilot");
+  document.getElementById("player3deck").value = getCookie("player3deck");
+  document.getElementById("player3firstletter").innerHTML = getCookie("player3pilot").charAt(0).toUpperCase();
+  document.getElementById("player4pilot").value = getCookie("player4pilot");
+  document.getElementById("player4deck").value = getCookie("player4deck");
+  document.getElementById("player4firstletter").innerHTML = getCookie("player4pilot").charAt(0).toUpperCase();
 }
 
 function toggle(id) {
   var element = document.getElementById(id);
-  //do this with css classes instead
-  //if elements class name list contains 'no-display'
-  //then remove it
-  //else add it 
-    if (element.style.display === "none") {
-        element.style.display = "inline";
-    } else {
-        element.style.display = "none";
-    }
+  if(element.classList.contains("no-display")) {
+    element.classList.remove("no-display");
+  } else {
+    element.classList.add("no-display");
+  }
 }
 
 function fillInMeta() {

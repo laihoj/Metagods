@@ -1,19 +1,25 @@
 <% players += 1; %>
 
-<div class="player-badge">
+<div class="player-badge" draggable="true">
 	<div class="row padded">
-		<i class="expand-avatar two columns fas fa-plus primary" onclick="toggle('player<%=players%>');"></i>
+		<span id="player<%=players%>collapsed" class="">
+			<button type="button" class="expand-player-button two columns primary" onclick="toggle('player<%=players%>');toggle('player<%=players%>extended');toggle('player<%=players%>collapsed');"><span id="player<%=players%>firstletter"><span></button>
+		</span>
+		<span id="player<%=players%>extended" class="no-display">
+			<button type="button" class="expand-player-button two columns fas fa-bars primary" onclick="toggle('player<%=players%>');toggle('player<%=players%>collapsed');toggle('player<%=players%>extended');"></button>
+		</span>
 		
-		<div class="padded">
-			<i class="fas fa-hand-paper margin-left"></i>
+		<div>
+			<i class="fas fa-hand-paper fa-2x margin-left"></i>
 			<input type="number" id="player<%=players%>hand" name="result[hand]" min="0" max="7" value="7">
-			<i class="fas fa-minus-circle" style="color:red;" onclick="document.getElementById('player<%=players%>hand').value--;" ></i>
-		
-			<i class="fas fa-trophy margin-left"></i>
+			<div class="input-extend" onclick="document.getElementById('player<%=players%>hand').value--;">
+				<i class="fas fa-minus-circle" style="color:red;"></i>
+			</div>
+			<i class="fas fa-trophy fa-2x margin-left"></i>
 			<input id="playername" type="radio" name="result[starter]" value="<%= players %>" required>
 		
 		
-			<i class="fas fa-play margin-left"></i>
+			<i class="fas fa-dice fa-2x margin-left"></i>
 			<input id="playername" type="radio" name="result[winner]" value="<%= players %>" required>
 		</div>
 	</div>
