@@ -1,7 +1,23 @@
 <% players += 1; %>
 
 <div class="player-badge">
-	<div class="row">
+	<div class="row padded">
+		<i class="expand-avatar two columns fas fa-plus primary" onclick="toggle('player<%=players%>');"></i>
+		
+		<div class="padded">
+			<i class="fas fa-hand-paper margin-left"></i>
+			<input type="number" id="player<%=players%>hand" name="result[hand]" min="0" max="7" value="7">
+			<i class="fas fa-minus-circle" style="color:red;" onclick="document.getElementById('player<%=players%>hand').value--;" ></i>
+		
+			<i class="fas fa-trophy margin-left"></i>
+			<input id="playername" type="radio" name="result[starter]" value="<%= players %>" required>
+		
+		
+			<i class="fas fa-play margin-left"></i>
+			<input id="playername" type="radio" name="result[winner]" value="<%= players %>" required>
+		</div>
+	</div>
+	<div id="player<%=players%>" class="row no-display">
 		<div class="container">
 			<i class="fas fa-user"></i>
 			<select class="select" name="result[player]" id="player<%=players%>pilot">
@@ -17,21 +33,6 @@
 					<option value="<%= allDecks[i].name %>"><%= allDecks[i].name %></option>
 				<% } %>
 			</select>
-		</div>
-
-		<div class="container">
-			<i class="fas fa-hand-paper"></i>
-			<!--<i class="material-icons">filter_7</i>-->
-			<input type="number" id="player<%=players%>hand" name="result[hand]" min="0" max="7" value="7">
-			<i class="fas fa-minus-circle" style="color:red;" onclick="document.getElementById('player<%=players%>hand').value--;" ></i>
-		</div>			
-	</div>
-	<div class="row">
-		<div class="container">
-			<i class="fas fa-trophy"></i>
-			<input id="playername" type="radio" name="result[starter]" value="<%= players %>" required>
-			<i class="fas fa-hand-pointer"></i>
-			<input id="playername" type="radio" name="result[winner]" value="<%= players %>" required>
 		</div>
 	</div>
 </div>

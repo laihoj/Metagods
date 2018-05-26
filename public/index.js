@@ -11,6 +11,30 @@
 https://stackoverflow.com/questions/21172889/express-send-a-page-and-custom-data-to-the-browser-in-a-single-request
 */
 
+function fillFormWithCookie() {
+  document.getElementById("player1pilot").value = getCookie("player1pilot");
+    document.getElementById("player1deck").value = getCookie("player1deck");
+    document.getElementById("player2pilot").value = getCookie("player2pilot");
+    document.getElementById("player2deck").value = getCookie("player2deck");
+    document.getElementById("player3pilot").value = getCookie("player3pilot");
+    document.getElementById("player3deck").value = getCookie("player3deck");
+    document.getElementById("player4pilot").value = getCookie("player4pilot");
+    document.getElementById("player4deck").value = getCookie("player4deck");
+}
+
+function toggle(id) {
+  var element = document.getElementById(id);
+  //do this with css classes instead
+  //if elements class name list contains 'no-display'
+  //then remove it
+  //else add it 
+    if (element.style.display === "none") {
+        element.style.display = "inline";
+    } else {
+        element.style.display = "none";
+    }
+}
+
 function fillInMeta() {
   for(var i = 1; i < 5; i++) {
     document.getElementById("player1pilot").value = "Rynde";
@@ -32,19 +56,14 @@ function addPlayer() {
 }
 
 function saveMatch() {
-  setCookie("player1pilot", document.forms[0][3].value);
-  setCookie("player1deck", document.forms[0][4].value);
-  setCookie("player2pilot", document.forms[0][8].value);
-  setCookie("player2deck", document.forms[0][9].value);
-  setCookie("player3pilot", document.forms[0][13].value);
-  setCookie("player3deck", document.forms[0][14].value);
-  setCookie("player4pilot", document.forms[0][18].value);
-  setCookie("player4deck", document.forms[0][19].value);
-  // setCookie("form", document.forms[0].innerHTML);
-  // document.forms['newMatchForm'].action = "/metas";
-  // document.forms['newMatchForm'].target = "formResponse";
-  // document.forms['newMatchForm'].method = "POST";
-  // document.forms['newMatchForm'].submit();
+  setCookie("player1pilot", document.getElementById("player1pilot").value);
+  setCookie("player1deck", document.getElementById("player1deck").value);
+  setCookie("player2pilot", document.getElementById("player2pilot").value);
+  setCookie("player2deck", document.getElementById("player2deck").value);
+  setCookie("player3pilot", document.getElementById("player3pilot").value);
+  setCookie("player3deck", document.getElementById("player3deck").value);
+  setCookie("player4pilot", document.getElementById("player4pilot").value);
+  setCookie("player4deck", document.getElementById("player4deck").value);
 }
 
 var HttpClient = function() {
