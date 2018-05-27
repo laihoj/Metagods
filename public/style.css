@@ -32,6 +32,11 @@ td {
   padding-bottom: 1rem;
 }
 
+.selected {
+  /*color:green;*/
+  background-color:green;
+}
+
 /* Forms
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 .input-extend {
@@ -75,7 +80,7 @@ MOBILE STUFF
 .button-overlay {
   height:8rem;
   width:8rem;
-  z-index:3000;
+  z-index:30000;
   border-radius: 100% 100% 100% 100%;
   /*font-size: 3rem;*/
   padding: 0px;
@@ -97,6 +102,30 @@ MOBILE STUFF
   font-weight: bold;
 }
 
+.round-button {
+  height:5rem;
+  width:5rem;
+  border-radius: 100% 100% 100% 100%;
+  padding: 0px;
+  
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.margined {
+  margin: 1rem;
+}
+
+/*.remove-player-button {
+  height:5rem;
+  width:5rem;
+  border-radius: 100% 100% 100% 100%;
+  padding: 0px;
+  margin: 1rem;
+  font-size: 2rem;
+  font-weight: bold;
+}*/
+
 .fixed {
   position: fixed;
 }
@@ -116,8 +145,18 @@ MOBILE STUFF
 }
 
 .middle {
-  left: 50%;
+  /*margin:auto !important;*/
+  /*left: 30%;*/
+  padding:0;
+  /*left:auto !important;*/
+  /*right:auto !important;*/
   /*margin:auto;*/
+  /*text-align: center;*/
+  /*margin-left: auto;*/
+  /*margin-right: auto;*/
+  /*align-items:center;*/
+  /*display:flex;*/
+  -webkit-transform: translateX(-50%);
   border-bottom-left-radius: 40%;
   border-bottom-right-radius: 40%;
 }
@@ -125,6 +164,11 @@ MOBILE STUFF
 .primary {
   background-color: #33C3F0;
   border-color: #33C3F0;
+}
+
+.danger {
+  background-color: #dc3545;
+  border-color: #dc3545;
 }
 
 .basic {
@@ -190,6 +234,7 @@ END
   text-align: left;
   padding: 0px !important;
   z-index:30000;
+  width: 80%;
   /*text-align: center;*/
 }
 
@@ -222,6 +267,10 @@ END
 
 .player-badge div div {
   padding:4px 0 4px;
+}
+
+.player-badge div div i {
+  padding:5px;
 }
 
 .section {

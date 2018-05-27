@@ -15,16 +15,6 @@ router.get("/", function(req,res) {
 	res.render("api");
 });
 
-// router.get("/metas", function(req,res){
-// 	Meta.find({}, function(err, foundMetas) {
-// 		if (err) {
-// 			res.redirect("/api")
-// 		} else {
-// 			res.send(foundMetas);
-// 		}
-// 	});
-// });
-
 router.get("/decks", function(req,res) {
 	Deck.find({}, function(err, foundDecks) {
 		if(err) {
@@ -64,8 +54,8 @@ router.get("/addplayer", retreiveAllDecks, retreiveAllPlayers, function(req, res
 	res.render("partials/playermatchrow", {players:0});
 });
 
-// router.get("/results/new", retreiveAllDecks, retreiveAllPlayers, function(req, res) {
-// 	res.render("newmatchform",{players:0});
+// router.get("/results/new", function(req, res) {
+// 	res.render("partials/playermatchrow");
 // });
 
 router.get("/players/new", function(req, res) {

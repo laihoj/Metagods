@@ -1,10 +1,3 @@
-/*
-TODO:
-- Deck favouriting
-- Dynamic match deck options
-- Implement match / meta (persistence)
-- enter tappedout based only on name
-*/
 var bodyParser 				= require("body-parser"),
 	mongoose 				= require("mongoose"),
 	flash					= require("connect-flash"),

@@ -36,6 +36,20 @@ function toggle(id) {
   }
 }
 
+function check(id, name) {
+  var checkboxes = document.getElementsByClassName(name);
+  for(var i = 0; i < checkboxes.length; i++) {
+    checkboxes[i].classList.remove("selected");
+  }
+  if(document.getElementById(id).checked) {
+    document.getElementById(id).checked = false;
+    document.getElementById(id+"icon").classList.remove("selected");
+  } else {
+    document.getElementById(id).checked = true;
+    document.getElementById(id+"icon").classList.add("selected");
+  }
+}
+
 function fillInMeta() {
   for(var i = 1; i < 5; i++) {
     document.getElementById("player1pilot").value = "Rynde";
@@ -43,17 +57,22 @@ function fillInMeta() {
   }
 }
 
+function removePlayer() {
+  alert("remove player pressed");
+}
+
 function addPlayer() {
-  var client = new HttpClient();
-  client.get('http://localhost:3000/api/addplayer', function(response) {
-    console.log(response);
-    var parser = new DOMParser();
-    var html = parser.parseFromString(response, "text/xml").
-    parser.getElementById("nextPlayer").innerHTML = html;
-    // response.forEach(function(deck) {
-      // deckList.options.add(deck);
-    // });
-  });
+  alert("add player pressed");
+  // var client = new HttpClient();
+  // client.get('http://localhost:3000/api/addplayer', function(response) {
+  //   console.log(response);
+  //   var parser = new DOMParser();
+  //   var html = parser.parseFromString(response, "text/xml").
+  //   parser.getElementById("nextPlayer").innerHTML = html;
+  //   // response.forEach(function(deck) {
+  //     // deckList.options.add(deck);
+  //   // });
+  // });
 }
 
 function saveMatch() {

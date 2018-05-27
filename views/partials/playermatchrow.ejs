@@ -2,28 +2,45 @@
 
 <div class="player-badge draggable" draggable="true">
 	<div class="row padded">
+
+
 		<span id="player<%=players%>collapsed" class="">
 			<button type="button" class="expand-player-button two columns primary" onclick="toggle('player<%=players%>');toggle('player<%=players%>extended');toggle('player<%=players%>collapsed');"><span id="player<%=players%>firstletter"><span></button>
 		</span>
+
+
 		<span id="player<%=players%>extended" class="no-display">
 			<button type="button" class="expand-player-button two columns fas fa-bars primary" onclick="toggle('player<%=players%>');toggle('player<%=players%>collapsed');toggle('player<%=players%>extended');"></button>
 		</span>
 		
-		<div>
-			<i class="fas fa-hand-paper fa-2x margin-left"></i>
+		
+			<button type="button" class="round-button" onclick="document.getElementById('player<%=players%>hand').value--;">
+				<i class="fas fa-sync"></i>
+			</button>
 			<input type="number" id="player<%=players%>hand" name="result[hand]" min="0" max="7" value="7">
-			<div class="input-extend" onclick="document.getElementById('player<%=players%>hand').value--;">
-				<i class="fas fa-minus-circle" style="color:red;"></i>
-			</div>
-			<i class="fas fa-trophy fa-2x margin-left"></i>
-			<input id="playername" type="radio" name="result[starter]" value="<%= players %>" required>
+
+
+			<button id="player<%= players %>starticon" type="button" class="starter round-button" onclick="check('player<%= players %>start', 'starter')">
+				<i  class="fas fa-dice"></i>
+				<div class="no-display">
+					<input id="player<%= players %>start" type="radio" name="result[starter]" value="<%= players %>" required>
+				</div>
+			</button>
+
+
+			<button id="player<%= players %>winicon" type="button" class="winner round-button" onclick="check('player<%= players %>win', 'winner')">
+				<i class="fas fa-trophy" ></i>
+				<div class="no-display">
+					<input id="player<%= players %>win" type="radio" name="result[winner]" value="<%= players %>" required>
+				</div>
+			</button>
 		
-		
-			<i class="fas fa-dice fa-2x margin-left"></i>
-			<input id="playername" type="radio" name="result[winner]" value="<%= players %>" required>
-		</div>
+
+
 	</div>
 	<div id="player<%=players%>" class="row no-display">
+
+
 		<div class="container">
 			<i class="fas fa-user"></i>
 			<select class="select" name="result[player]" id="player<%=players%>pilot">
@@ -32,6 +49,8 @@
 				<% } %>
 			</select>
 		</div>
+
+
 		<div class="container">
 			<i class="fas fa-book"></i>
 			<select class="select" name="result[deck]" id="player<%=players%>deck">
@@ -40,6 +59,11 @@
 				<% } %>
 			</select>
 		</div>
+
+
+		<button type="button" class="round-button danger u-full-width" onclick="removePlayer()">
+			<i class="fas fa-minus" style="color:black;"></i>
+		</button>
 	</div>
 	
 </div>
