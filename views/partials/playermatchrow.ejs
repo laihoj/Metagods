@@ -1,6 +1,6 @@
 <% players += 1; %>
 
-<div class="player-badge" draggable="true">
+<div class="player-badge draggable">
 	<div class="row padded">
 		<span id="player<%=players%>collapsed" class="">
 			<button type="button" class="expand-player-button two columns primary" onclick="toggle('player<%=players%>');toggle('player<%=players%>extended');toggle('player<%=players%>collapsed');"><span id="player<%=players%>firstletter"><span></button>
@@ -41,4 +41,6 @@
 			</select>
 		</div>
 	</div>
+	
 </div>
+<script>$('.draggable').draggable();</script>
