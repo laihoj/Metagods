@@ -115,6 +115,13 @@ MOBILE STUFF
   border-bottom-right-radius: 40% 
 }
 
+.middle {
+  left: 50%;
+  /*margin:auto;*/
+  border-bottom-left-radius: 40%;
+  border-bottom-right-radius: 40%;
+}
+
 .primary {
   background-color: #33C3F0;
   border-color: #33C3F0;
@@ -178,12 +185,21 @@ END
   z-index: -1; 
 }
 
+#match-help-modal {
+  /*margin:auto !important;*/
+  text-align: left;
+  padding: 0px !important;
+  z-index:30000;
+  /*text-align: center;*/
+}
+
 .match {
   /*box-shadow: 0 3px 5px 3px rgba(36, 31, 32, .3);*/
   box-shadow: 0 2px 3px 2px rgba(36, 31, 32, .3);
   /*padding: 1rem 0rem 1rem;*/
   margin: 2rem;
   border-radius: 10px;
+  background-color: white;
 }
 
 .navbar {

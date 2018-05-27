@@ -1,10 +1,22 @@
 <% include ./partials/header %>
 
+<div id="match-help-modal" class="match fixed center middle no-display">
+	<h3>How to use the match form:</h3>
+	<p>Star button: Sets the current players and decks as your default.</p>
+	<p>Question button: Opens and closes this help box</p>
+	<p>Clipboard button: Submits and publishes the match result</p>
+</div>
 
 <div class="section">
 	<div class="container">
 		<button class="button-overlay primary fixed bottom right" form="newMatchForm" value="Submit"><i class="fas fa-clipboard-check fa-2x"></i></button>
+
 		<button class="button-overlay basic fixed bottom left" onclick="saveMatch()"><i class="fas fa-star fa-2x"></i></button>
+
+		<button class="button-overlay basic fixed bottom middle" onclick="toggle('match-help-modal')"><i class="fas fa-question fa-2x"></i></button>
+
+		
+
 		<% include newmatchform %>
 	</div>
 </div>
