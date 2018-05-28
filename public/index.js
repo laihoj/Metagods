@@ -58,11 +58,11 @@ function fillInMeta() {
 }
 
 function removePlayer() {
-  alert("remove player pressed");
+  alert("remove player pressed. NOT FUNCTIONAL");
 }
 
 function addPlayer() {
-  alert("add player pressed");
+  alert("add player pressed. NOT FUNCTIONAL");
   // var client = new HttpClient();
   // client.get('http://localhost:3000/api/addplayer', function(response) {
   //   console.log(response);
