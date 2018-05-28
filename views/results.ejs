@@ -18,6 +18,7 @@
 							<th>Mulligan</th>
 							<th>Starter</th>
 							<th>Winner</th>
+							<th>Time</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -28,8 +29,17 @@
 								<td><%= results[i].player %></td>
 								<td><%= results[i].deck %></td>
 								<td><%= results[i].hand %></td>
-								<td><%= results[i].starter %></td>
-								<td><%= results[i].winner %></td>
+								<td>
+									<% if(results[i].starter) { %>
+										<i  class="fas fa-dice"></i>
+									<% } %>
+								</td>
+								<td>
+									<% if(results[i].winner) { %>
+										<i class="fas fa-trophy"></i>
+									<% } %>
+								</td>
+								<td><%= results[i].time %></td>
 							</tr>
 						<% } %>
 					</tbody>

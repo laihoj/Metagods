@@ -130,7 +130,7 @@ app.put("/players/:player/", function(req, res) {
 });
 
 app.get("/results", function(req, res) {
-	request("http://" + domain + "/api/results", function(err, response, body) {
+	request("http://" + domain + "/api/results/today", function(err, response, body) {
 		res.render("results",{results:JSON.parse(body)});
 	});
 });
@@ -269,13 +269,11 @@ function createDeck(req, res, next) {
 }
 
 function createMatch(req, res, next) {
-	Result.count({}, function(err, Count) {
+	Result.findOne().sort("-match").exec(function(err, resultWithBiggestMatchNumber) {
 		if(err) {
 			console.log(err);
-			res.redirect("/");
 		} else {
-			Count ++;
-			req.body.result.match = Count;
+			req.body.result.match = resultWithBiggestMatchNumber.match + 1;
 			createResult(req.body.result, req.body.numberOfPlayers, req.body.numberOfPlayers, next);
 		}
 	});

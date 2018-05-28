@@ -35,6 +35,16 @@ router.get("/results", function(req,res) {
 	});
 });
 
+router.get("/results/today", function(req,res) {
+	Result.find({time:{$gt: Date.now() - 1000 * 60 * 60 * 12}}, function(err, foundResults) {
+		if(err) {
+			console.log(err);
+		} else {
+			res.send(foundResults);
+		}
+	});
+});
+
 router.get("/players", function(req,res) {
 	User.find({}, function(err, foundUsers) {
 		if(err) {

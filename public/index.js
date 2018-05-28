@@ -84,6 +84,7 @@ function saveMatch() {
   setCookie("player3deck", document.getElementById("player3deck").value);
   setCookie("player4pilot", document.getElementById("player4pilot").value);
   setCookie("player4deck", document.getElementById("player4deck").value);
+  alert("Current match set as default");
 }
 
 var HttpClient = function() {
