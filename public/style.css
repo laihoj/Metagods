@@ -12,6 +12,23 @@ td {
   padding: 1rem;
 }
 
+.bottombar {
+  background-color: rgb(243, 229, 171);
+  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.3);
+  bottom:0%;
+  width:100%;
+}
+.bottombar-overlay {
+  z-index:30000;
+}
+
+
+.stats {
+  float:left;
+  width:30%;
+  text-align:center;
+}
+
 .about p {
   text-align:justify;
 }
@@ -250,8 +267,9 @@ END
 .navbar {
   background-color: rgb(243, 229, 171);
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-
 }
+
+
 
 .player-badge {
   background-color: rgb(243, 229, 171);
