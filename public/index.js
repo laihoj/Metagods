@@ -1,18 +1,28 @@
-// var playerNames = ["default", "Jaakko", "Rynde", "Matias", "Valtteri", "Tommi", "Markus", "Jonne", "Joel", "Tino"];
-
-// var playersAndDecks = {};
-// playersAndDecks["Matias"] = ["Thrasios Silas", "Yidris"];
-// playersAndDecks["jaakko"] = ["Zur", "Breya", "Tymna Kraum"];
-// playersAndDecks["Tommi"] = ["Tymna Thrasios"];
-// playersAndDecks["Valtteri"] = ["Gitrog"];
-// playersAndDecks["Rynde"] = ["Mad farm"];
 
 /*
 https://stackoverflow.com/questions/21172889/express-send-a-page-and-custom-data-to-the-browser-in-a-single-request
 */
 
+function getResults(player) {
+  var client = new HttpClient();
+  client.get('http://metagods.herokuapp.com/api/results/' + player + '/', function(response) {
+    console.log(response);
+  });
+}
+
+function getWinCount() {
+  document.getElementById("wincount").textContent = 3;
+}
+
+function getWinRate() {
+  document.getElementById("winrate").textContent = 26;
+}
+
+function getGameCount() {
+  document.getElementById("gamecount").textContent = 5;
+}
+
 function fillFormWithCookie() {
-  // alert(getCookie("player1pilot").charAt(0).toUpperCase());
   document.getElementById("player1pilot").value = getCookie("player1pilot");
   document.getElementById("player1deck").value = getCookie("player1deck");
   document.getElementById("player1firstletter").innerHTML = getCookie("player1pilot").charAt(0).toUpperCase();
@@ -84,6 +94,7 @@ function saveMatch() {
   setCookie("player3deck", document.getElementById("player3deck").value);
   setCookie("player4pilot", document.getElementById("player4pilot").value);
   setCookie("player4deck", document.getElementById("player4deck").value);
+  location.reload();
   alert("Current match set as default");
 }
 
@@ -124,8 +135,6 @@ function getPlayer(player, i) {
 }
 
 function setCookie(name, value) {
-  // alert("Cookie set: " + name + "=" + value);
-  // document.cookie = name + "=" + value + "; expires=31 Dec 2018 12:00:00 UTC";
   document.cookie = name + "=" + value;
 }
 

@@ -45,6 +45,16 @@ router.get("/results/today", function(req,res) {
 	});
 });
 
+router.get("/results/:player", function(req,res) {
+	Result.find({player:req.params.player}, function(err, foundResults) {
+		if(err) {
+			console.log(err);
+		} else {
+			res.send(foundResults);
+		}
+	});
+});
+
 router.get("/players", function(req,res) {
 	User.find({}, function(err, foundUsers) {
 		if(err) {

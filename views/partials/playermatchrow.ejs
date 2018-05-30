@@ -14,26 +14,26 @@
 		</span>
 		
 		
-			<button type="button" class="round-button" onclick="document.getElementById('player<%=players%>hand').value--;">
-				<i class="fas fa-sync"></i>
-			</button>
-			<input type="number" id="player<%=players%>hand" name="result[hand]" min="0" max="7" value="7">
+		<button type="button" class="round-button" onclick="document.getElementById('player<%=players%>hand').value--;">
+			<i class="fas fa-sync"></i>
+		</button>
+		<input type="number" id="player<%=players%>hand" name="result[hand]" min="0" max="7" value="7">
 
 
-			<button id="player<%= players %>starticon" type="button" class="starter round-button" onclick="check('player<%= players %>start', 'starter')">
-				<i  class="fas fa-dice"></i>
-				<div class="no-display">
-					<input id="player<%= players %>start" type="radio" name="result[starter]" value="<%= players %>" required>
-				</div>
-			</button>
+		<button id="player<%= players %>starticon" type="button" class="starter round-button" onclick="check('player<%= players %>start', 'starter')">
+			<i  class="fas fa-dice"></i>
+			<div class="no-display">
+				<input id="player<%= players %>start" type="radio" name="result[starter]" value="<%= players %>" required>
+			</div>
+		</button>
 
 
-			<button id="player<%= players %>winicon" type="button" class="winner round-button" onclick="check('player<%= players %>win', 'winner')">
-				<i class="fas fa-trophy"></i>
-				<div class="no-display">
-					<input id="player<%= players %>win" type="radio" name="result[winner]" value="<%= players %>" required>
-				</div>
-			</button>
+		<button id="player<%= players %>winicon" type="button" class="winner round-button" onclick="check('player<%= players %>win', 'winner')">
+			<i class="fas fa-trophy"></i>
+			<div class="no-display">
+				<input id="player<%= players %>win" type="radio" name="result[winner]" value="<%= players %>" required>
+			</div>
+		</button>
 		
 
 

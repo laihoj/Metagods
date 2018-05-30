@@ -1,9 +1,24 @@
-<%if(!currentUser) { %>
+<% if(currentUser) { %>
 	<div class="bottombar bottombar-overlay fixed">
 		<div class="container">
-			<div class="stats" id="wins"><i class="fas fa-trophy"></i>1</div>
-			<div class="stats" id="winrate">winrate: 25%</div>
-			<div class="stats" id="games">games: 4</div>
+			<div class="stats">
+				<i class="fas fa-trophy"></i>
+				<span id="wincount">1</span>
+			</div>
+			<div class="stats">
+				winrate: <span id="winrate">25</span>%
+			</div>
+			<div class="stats">
+				games: <span id="gamecount">4</span>
+			</div>
 		</div>
 	</div>
+	<script>
+		document.addEventListener("DOMContentLoaded", function(event) {
+			getResults('<%= currentUser.username %>');
+			getWinCount();
+			getWinRate();
+			getGameCount();
+		});
+	</script>
 <% } %>

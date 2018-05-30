@@ -55,39 +55,6 @@ APP ROUTES
 *********************************************/
 
 
-// app.get("/metas", function(req,res){
-// 	request("http://" + domain + "/api/metas", function(err, response, body) {
-// 		res.render("metas",{metas:JSON.parse(body)});
-// 	});
-// });
-
-
-
-// app.get("/metas/new", function(req, res) {
-// 	res.redirect("/results/new");
-// });
-
-// app.post("/metas", createMeta, addMetaToCookie, function(req,res){
-// 	res.redirect("/metas");
-// });
-
-// app.get("/metas/:meta", function(req, res){
-// 	request("http://" + domain + "/api/decks/" + req.params.deck, function(err, response, body) {
-// 		res.render("deck",{deck:JSON.parse(body)});
-// 	});
-// });
-
-// app.put("/metas/:meta/", function(req, res) {
-// 	User.findOneAndUpdate({username:req.params.player}, req.body.player, function(err, updatedPlayer) {
-// 		if(err) {
-// 			res.redirect("/");
-// 		} else {
-// 			req.flash("success", "Deck favourites updated");
-// 			res.redirect("/decks");
-// 		}
-// 	});
-// });
-
 app.get("/decks", function(req,res){
 	request("http://" + domain + "/api/decks", function(err, response, body) {
 		var decks = JSON.parse(body);
@@ -134,19 +101,6 @@ app.get("/results", function(req, res) {
 		res.render("results",{results:JSON.parse(body)});
 	});
 });
-
-// app.get("/results/new", retreiveAllDecks, retreiveAllPlayers, function(req, res) {
-// 	res.locals.allPlayers.forEach(function(player){
-// 		res.cookie(player.username, player.decks);
-// 	})
-// 	res.locals.allDecks.forEach(function(deck){
-// 		res.cookie(deck.name, deck.tappedout);
-// 	})
-		
-	
-// 	// res.cookie("data", res.locals.allPlayers);
-// 	res.render("newresult",{players:0});
-// });
 
 app.get("/results/new", retreiveAllDecks, retreiveAllPlayers, function(req, res) {
 	request("http://" + domain + "/api/players", function(err, response, body) {
@@ -273,7 +227,11 @@ function createMatch(req, res, next) {
 		if(err) {
 			console.log(err);
 		} else {
-			req.body.result.match = resultWithBiggestMatchNumber.match + 1;
+			if(resultWithBiggestMatchNumber) {
+				req.body.result.match = resultWithBiggestMatchNumber.match + 1;
+			} else {
+				req.body.result.match = 1;
+			}
 			createResult(req.body.result, req.body.numberOfPlayers, req.body.numberOfPlayers, next);
 		}
 	});
