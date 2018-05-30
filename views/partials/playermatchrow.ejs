@@ -5,7 +5,7 @@
 
 
 		<span id="player<%=players%>collapsed" class="">
-			<button type="button" class="expand-player-button two columns primary" onclick="toggle('player<%=players%>');toggle('player<%=players%>extended');toggle('player<%=players%>collapsed');"><span id="player<%=players%>firstletter"><span></button>
+			<button type="button" class="expand-player-button two columns primary"  onclick="toggle('player<%=players%>');toggle('player<%=players%>extended');toggle('player<%=players%>collapsed');"><span id="player<%=players%>firstletter"><span></button>
 		</span>
 
 
@@ -43,17 +43,20 @@
 
 		<div class="container">
 			<i class="fas fa-user"></i>
-			<select class="select" name="result[player]" id="player<%=players%>pilot">
+			<select class="select" name="result[player]" onchange="saveMatch();" id="player<%=players%>pilot">
 				<% for(var i = 0; i < allPlayers.length; i++) { %>
 					<option value="<%= allPlayers[i].username %>"><%= allPlayers[i].username %></option>
 				<% } %>
 			</select>
+			<button type="button" class="round-button round-button-small primary u-full-width" onclick="removePlayer()">
+				<i class="fas fa-plus" style="color:black;"></i>
+			</button>
 		</div>
 
 
 		<div class="container">
 			<i class="fas fa-book"></i>
-			<select class="select" name="result[deck]" id="player<%=players%>deck">
+			<select class="select" name="result[deck]" onchange="saveMatch();" id="player<%=players%>deck">
 				<% for(var i = 0; i < allDecks.length; i++) { %>
 					<option value="<%= allDecks[i].name %>"><%= allDecks[i].name %></option>
 				<% } %>

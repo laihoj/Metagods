@@ -130,6 +130,16 @@ MOBILE STUFF
   font-weight: bold;
 }
 
+.round-button-small {
+  height:5rem;
+  width:5rem;
+  border-radius: 100% 100% 100% 100%;
+  padding: 0px;
+  
+  font-size: 2rem;
+  font-weight: bold;
+}
+
 .margined {
   margin: 1rem;
 }
