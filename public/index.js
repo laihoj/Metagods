@@ -71,8 +71,19 @@ function removePlayer() {
   alert("remove player pressed. NOT FUNCTIONAL");
 }
 
+
+/*
+USE AS REFERENCE: https://stackoverflow.com/questions/4427094/how-can-i-duplicate-a-div-onclick-with-javascript
+*/
 function addPlayer() {
   alert("add player pressed. NOT FUNCTIONAL");
+  // var form = document.getElementById("newMatchForm");
+  // var div = document.createElement("DIV")
+  // var text = document.createTextNode("hello");
+  // div.appendChild(text);
+  // form.appendChild(div);
+  // document.body.appendChild(form);
+
   // var client = new HttpClient();
   // client.get('http://localhost:3000/api/addplayer', function(response) {
   //   console.log(response);

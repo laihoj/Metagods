@@ -14,7 +14,7 @@
 			<% include partials/playermatchrow %>
 		</div>
 		<div id="next-player-target">
-			<button type="button" class="round-button primary margined" onclick="addPlayer()">
+			<button type="button" class="round-button primary margined" onclick="addPlayer();">
 				<i class="fas fa-plus" style="color: white;"></i>
 			</button>
 		</div>
@@ -22,7 +22,7 @@
 	<div class="form-meta-input">
 		<input type="number" value="4" name="numberOfPlayers" hidden>
 		<label for="turns">Winning Turn:</label>
-		<input type="number" value="3" min="0" id="turns" name="result[turns]">
+		<input type="number" min="0" id="turns" name="result[turns]" required>
 		<div class="input-extend" onclick="document.getElementById('turns').value++;">
 			<i class="fas fa-plus-circle" style="color:green;"></i>
 		</div>
