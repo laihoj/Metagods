@@ -3,6 +3,26 @@
 https://stackoverflow.com/questions/21172889/express-send-a-page-and-custom-data-to-the-browser-in-a-single-request
 */
 
+
+
+function customValidation() {
+  // return boolean
+}
+
+function resetTempMatchData() {
+  deletePlayerTempData(1);
+  deletePlayerTempData(2);
+  deletePlayerTempData(3);
+  deletePlayerTempData(4);
+  refresh();
+}
+
+function deletePlayerTempData(i) {
+  deleteCookie("player"+i+"hand");
+  deleteCookie("player"+i+"start");
+  deleteCookie("player"+i+"win");
+}
+
 function getResults(player) {
   var client = new HttpClient();
   client.get('http://metagods.herokuapp.com/api/results/' + player + '/', function(response) {
@@ -22,19 +42,33 @@ function getGameCount() {
   document.getElementById("gamecount").textContent = 5;
 }
 
-function fillFormWithCookie() {
-  document.getElementById("player1pilot").value = getCookie("player1pilot");
-  document.getElementById("player1deck").value = getCookie("player1deck");
-  document.getElementById("player1firstletter").innerHTML = getCookie("player1pilot").charAt(0).toUpperCase();
-  document.getElementById("player2pilot").value = getCookie("player2pilot");
-  document.getElementById("player2deck").value = getCookie("player2deck");
-  document.getElementById("player2firstletter").innerHTML = getCookie("player2pilot").charAt(0).toUpperCase();
-  document.getElementById("player3pilot").value = getCookie("player3pilot");
-  document.getElementById("player3deck").value = getCookie("player3deck");
-  document.getElementById("player3firstletter").innerHTML = getCookie("player3pilot").charAt(0).toUpperCase();
-  document.getElementById("player4pilot").value = getCookie("player4pilot");
-  document.getElementById("player4deck").value = getCookie("player4deck");
-  document.getElementById("player4firstletter").innerHTML = getCookie("player4pilot").charAt(0).toUpperCase();
+function fillFormWithTemp(n) {
+  for(var i = 1; i <= n; i++) {
+    fillPlayerRowWithTemp(i);
+  }
+}
+
+function fillPlayerRowWithTemp(i) {
+  document.getElementById("player"+i+"hand").value = getCookie("player"+i+"hand");
+  if(getCookie("player"+i+"start") === "true") {
+    check("player"+i+"start","starter");
+  }
+  if(getCookie("player"+i+"win") === "true") {
+    check("player"+i+"win","winner");
+  }
+}
+
+function fillFormWithCookie(n) {
+  for(var i = 1; i <= n; i++) {
+    fillPlayerRowWithCookie(i);
+  }
+  // fillFormWithTemp();
+}
+
+function fillPlayerRowWithCookie(i) {
+  document.getElementById("player"+i+"pilot").value = getCookie("player"+i+"pilot");
+  document.getElementById("player"+i+"deck").value = getCookie("player"+i+"deck");
+  document.getElementById("player"+i+"firstletter").innerHTML = getCookie("player"+i+"pilot").charAt(0).toUpperCase();
 }
 
 function toggle(id) {
@@ -57,13 +91,6 @@ function check(id, name) {
   } else {
     document.getElementById(id).checked = true;
     document.getElementById(id+"icon").classList.add("selected");
-  }
-}
-
-function fillInMeta() {
-  for(var i = 1; i < 5; i++) {
-    document.getElementById("player1pilot").value = "Rynde";
-
   }
 }
 
@@ -96,17 +123,27 @@ function addPlayer() {
   // });
 }
 
-function saveMatch() {
-  setCookie("player1pilot", document.getElementById("player1pilot").value);
-  setCookie("player1deck", document.getElementById("player1deck").value);
-  setCookie("player2pilot", document.getElementById("player2pilot").value);
-  setCookie("player2deck", document.getElementById("player2deck").value);
-  setCookie("player3pilot", document.getElementById("player3pilot").value);
-  setCookie("player3deck", document.getElementById("player3deck").value);
-  setCookie("player4pilot", document.getElementById("player4pilot").value);
-  setCookie("player4deck", document.getElementById("player4deck").value);
+function saveMatch(n) {
+  for(var i = 1; i <= n; i++) {
+    savePlayerRow(i);
+  }
+}
+
+function savePlayerRow(i) {
+  setCookie("player"+i+"pilot", document.getElementById("player"+i+"pilot").value);
+  setCookie("player"+i+"deck", document.getElementById("player"+i+"deck").value);
+  setCookie("player"+i+"hand", document.getElementById("player"+i+"hand").value);
+  setCookie("player"+i+"start", document.getElementById("player"+i+"start").checked);
+  setCookie("player"+i+"win", document.getElementById("player"+i+"win").checked);
+}
+
+function refresh() {
   location.reload();
-  alert("Current match set as default");
+}
+
+function refresh(message) {
+  location.reload();
+  alert(message);
 }
 
 var HttpClient = function() {
@@ -119,6 +156,25 @@ var HttpClient = function() {
         anHttpRequest.open( "GET", aUrl, true );            
         anHttpRequest.send( null );
     }
+}
+
+
+
+function setCookie(name, value) {
+  document.cookie = name + "=" + value;
+}
+
+function getCookie(name) {
+  var value = "; " + document.cookie;
+  var parts = value.split("; " + name + "=");
+  if(parts.length === 2) {
+    return parts.pop().split(";").shift();
+  }
+}
+
+function deleteCookie(cookie) {
+  document.cookie = name + "=; max-age=0;";
+  alert("cookie deleted?")
 }
 
 /*****************************************
@@ -145,26 +201,12 @@ function getPlayer(player, i) {
   });
 }
 
-function setCookie(name, value) {
-  document.cookie = name + "=" + value;
-}
-
-function getCookie(name) {
-  var value = "; " + document.cookie;
-  var parts = value.split("; " + name + "=");
-  if(parts.length === 2) {
-    return parts.pop().split(";").shift();
-  }
-}
-
 function parseObjectFromCookie(cookie) {
   var decodedCookie = decodeURIComponent(cookie);
   return JSON.parse(decodedCookie);
 }
 
-function deleteCookie(cookie) {
-  document.cookie = name + "=; max-age=0;";
-}
+
 
 function changeDeckList(i) {
   var playerList = document.getElementById("player"+i+"pilot");
@@ -181,4 +223,11 @@ function changeDeckList(i) {
             deckList.options.add(deck);
         }
     }
+}
+
+function submitMatch() {
+  // var form = document.getElementById("newMatchForm");
+  document.getElementById("newMatchForm").submit();
+  resetTempMatchData();
+  alert("fancy submit");
 }

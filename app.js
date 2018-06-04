@@ -97,7 +97,7 @@ app.put("/players/:player/", function(req, res) {
 });
 
 app.get("/results", function(req, res) {
-	request("http://" + domain + "/api/results/today", function(err, response, body) {
+	request("http://" + domain + "/api/results", function(err, response, body) {
 		res.render("results",{results:JSON.parse(body)});
 	});
 });
@@ -269,15 +269,19 @@ function createResult(results, n, numberOfPlayers, next) {
 				time: time
 			}
 		}
-		Result.create(result, function(err, newResult) {
-			if(err) {
-				console.log(err);
-				res.redirect("/");
-			} else {
-				console.log("Result logged");
-				createResult(results, n - 1, numberOfPlayers, next);
-			}
-		});
+		if(!result.player.includes("Default")) { //as soon as form is player-dynamic, remove this condition
+			Result.create(result, function(err, newResult) {
+				if(err) {
+					console.log(err);
+					res.redirect("/");
+				} else {
+					console.log("Result logged");
+					createResult(results, n - 1, numberOfPlayers, next);
+				}
+			});
+		} else {
+			createResult(results, n - 1, numberOfPlayers, next);
+		}
 	}
 }
 
