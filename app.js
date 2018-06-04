@@ -113,8 +113,8 @@ app.get("/results/new", retreiveAllDecks, retreiveAllPlayers, function(req, res)
 	});
 });
 
-app.get("/results/relevant", function(req, res) {
-	request("http://" + domain + "/api/results/today ", function(err, response, body) {
+app.get("/results/:player", function(req, res) {
+	request("http://" + domain + "/api/results/today", function(err, response, body) {
 		var results = JSON.parse(body);
 		results.forEach(function(result) {
 

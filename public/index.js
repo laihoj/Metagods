@@ -23,23 +23,44 @@ function deletePlayerTempData(i) {
   deleteCookie("player"+i+"win");
 }
 
-function getResults(player) {
+function updateBottomBar(wins, winrate, games) {
+  setWinCount(wins);
+  setWinRate(winrate);
+  setGameCount(games);
+}
+
+function setWinCount(wins) {
+  document.getElementById("wincount").textContent = wins;
+}
+
+function setWinRate(winrate) {
+  document.getElementById("winrate").textContent = winrate;
+}
+
+function setGameCount(games) {
+  document.getElementById("gamecount").textContent = games;
+}
+
+function requestResults(player, callback) {
   var client = new HttpClient();
-  client.get(window.location.origin + '/api/results/' + player + '/', function(response) {
-    console.log(response);
+  client.get(window.location.origin + '/api/results/' + player + '/recent', function(response) {
+    callback(JSON.parse(response));
   });
 }
 
-function getWinCount() {
-  document.getElementById("wincount").textContent = 3;
-}
-
-function getWinRate() {
-  document.getElementById("winrate").textContent = 26;
-}
-
-function getGameCount() {
-  document.getElementById("gamecount").textContent = 5;
+function getResults(player) {
+  requestResults(player, function(results) {
+    var wins = 0;
+    var games = 0;
+    results.forEach(function(result) {
+      games++;
+      if(result.winner) {
+        wins++;
+      }
+    });
+    var winrate = wins / games * 100;
+    updateBottomBar(wins, winrate, games);
+  });
 }
 
 function fillFormWithTemp(n) {
