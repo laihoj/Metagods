@@ -25,7 +25,7 @@ function deletePlayerTempData(i) {
 
 function getResults(player) {
   var client = new HttpClient();
-  client.get('http://metagods.herokuapp.com/api/results/' + player + '/', function(response) {
+  client.get(window.location.origin + '/api/results/' + player + '/', function(response) {
     console.log(response);
   });
 }

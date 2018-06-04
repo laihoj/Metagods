@@ -4,6 +4,7 @@ var resultSchema = new mongoose.Schema({
 	match: Number,
 	turns: Number,
 	hand: Number,
+	players: Number,
 	player: String,
 	deck: String,
 	starter: Boolean,

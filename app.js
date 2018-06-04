@@ -31,6 +31,8 @@ app.use(function(req, res, next){
 	res.locals.currentUser = req.user;
 	res.locals.error = req.flash("error");
 	res.locals.success = req.flash("success");
+	res.header("Access-Control-Allow-Origin", "*");
+  	res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
 	next();
 });
 
@@ -108,6 +110,16 @@ app.get("/results/new", retreiveAllDecks, retreiveAllPlayers, function(req, res)
 			res.cookie(player.username, player.decks);
 		})
 		res.render("newresult",{players:0});
+	});
+});
+
+app.get("/results/relevant", function(req, res) {
+	request("http://" + domain + "/api/results/today ", function(err, response, body) {
+		var results = JSON.parse(body);
+		results.forEach(function(result) {
+
+		});
+		res.render("results",{results:results});
 	});
 });
 
@@ -249,6 +261,7 @@ function createResult(results, n, numberOfPlayers, next) {
 		if(Array.isArray(results["player"])) {
 			var result = {
 				match: results.match,
+				players: numberOfPlayers,
 				turns: results["turns"],
 				player: results["player"][numberOfPlayers - n],
 				deck: results["deck"][numberOfPlayers - n],
@@ -260,6 +273,7 @@ function createResult(results, n, numberOfPlayers, next) {
 		} else {
 			var result = {
 				match: results.match,
+				players: numberOfPlayers,
 				turns: results["turns"],
 				player: results["player"],
 				deck: results["deck"],
