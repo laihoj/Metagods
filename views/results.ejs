@@ -8,18 +8,18 @@
 			</form>
 			<h1>Results</h1>
 			<div class="data">
-				<table class="match-result u-full-width">
+				<table id="resultsTable" class="match-result u-full-width">
 					<thead>
 						<tr>
-							<th>#</th>
-							<th>Turns</th>
-							<th>Players</th>
-							<th>Player</th>
-							<th>Deck</th>
-							<th>Mulligan</th>
-							<th>Starter</th>
-							<th>Winner</th>
-							<th>Time</th>
+							<th onclick="sortTable('resultsTable',0,'true');">#<i class="fas fa-filter"></i></th>
+							<th onclick="sortTable('resultsTable',1,'true');">Turns</th>
+							<th onclick="sortTable('resultsTable',2,'true');">Players</th>
+							<th onclick="sortTable('resultsTable',3);">Player</th>
+							<th onclick="sortTable('resultsTable',4);">Deck</th>
+							<th onclick="sortTable('resultsTable',5,'true');">Mulligan</th>
+							<th onclick="sortTable('resultsTable',6);">Starter</th>
+							<th onclick="sortTable('resultsTable',7);">Winner</th>
+							<th onclick="sortTable('resultsTable',8);">Time</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -41,7 +41,7 @@
 										<i class="fas fa-trophy"></i>
 									<% } %>
 								</td>
-								<td><%= results[i].time %></td>
+								<td><%= new Date(Date.parse(results[i].time)).toLocaleDateString("en-US"); %></td>
 							</tr>
 						<% } %>
 					</tbody>

@@ -12,6 +12,58 @@ td {
   padding: 1rem;
 }
 
+tr:nth-child(even) {
+    background-color: #f2f2f2
+}
+
+
+.sorted-ascending::after {  
+  content: "\f0b0";
+  font-family: "FontAwesome";
+  font-style: normal;
+  font-weight: normal;
+  text-decoration: inherit;
+/*--adjust as necessary--*/
+/*  color: #000;
+  font-size: 18px;
+  padding-right: 0.5em;
+  position: absolute;
+  top: 10px;
+  left: 0;*/
+  
+}
+
+.sorted-descending::after {
+  content: "\f0b0";
+  font-family: FontAwesome;
+  font-style: normal;
+  font-weight: normal;
+  text-decoration: inherit;
+/*--adjust as necessary--*/
+  /*color: #000;
+  font-size: 18px;
+  padding-right: 0.5em;
+  position: absolute;
+  top: 10px;
+  left: 0;*/
+
+}
+
+/*#icon-added a::before{
+  padding-right: 10px;
+  font-family: "FontAwesome"
+}
+
+#resultsTable a::before{
+  content: "\f015";
+}
+#resultsTable a::before{
+  content: "\f2b9";
+}
+#resultsTable a::before{
+  content: "\f0e0";
+}*/
+
 .bottombar {
   background-color: rgb(243, 229, 171);
   box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.3);
@@ -19,6 +71,7 @@ td {
   width:100%;
   padding:2px;
 }
+
 .bottombar-overlay {
   z-index:29999;
 }
