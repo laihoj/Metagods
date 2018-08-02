@@ -124,24 +124,10 @@ function removePlayer() {
 USE AS REFERENCE: https://stackoverflow.com/questions/4427094/how-can-i-duplicate-a-div-onclick-with-javascript
 */
 function addPlayer() {
-  alert("add player pressed. NOT FUNCTIONAL");
-  // var form = document.getElementById("newMatchForm");
-  // var div = document.createElement("DIV")
-  // var text = document.createTextNode("hello");
-  // div.appendChild(text);
-  // form.appendChild(div);
-  // document.body.appendChild(form);
-
-  // var client = new HttpClient();
-  // client.get('http://localhost:3000/api/addplayer', function(response) {
-  //   console.log(response);
-  //   var parser = new DOMParser();
-  //   var html = parser.parseFromString(response, "text/xml").
-  //   parser.getElementById("nextPlayer").innerHTML = html;
-  //   // response.forEach(function(deck) {
-  //     // deckList.options.add(deck);
-  //   // });
-  // });
+  var players = document.getElementById("players");
+  var player1 = players.getElementsByClassName("player-badge")[0];
+  var newplayer = player1.cloneNode(true);
+  players.appendChild(newplayer);
 }
 
 function saveMatch(n) {

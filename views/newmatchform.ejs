@@ -1,17 +1,19 @@
 <form id="newMatchForm" action="/matches" method="post">
 	
-	<div class="row">
-		<div id="">
-			<% include partials/playermatchrow %>
-		</div>
-		<div id="">
-			<% include partials/playermatchrow %>
-		</div>
-		<div id="">
-			<% include partials/playermatchrow %>
-		</div>
-		<div id="">
-			<% include partials/playermatchrow %>
+	<div class="row" id="game-match">
+		<div id="players">
+			<div id="">
+				<% include partials/playermatchrow %>
+			</div>
+			<div id="">
+				<% include partials/playermatchrow %>
+			</div>
+			<div id="">
+				<% include partials/playermatchrow %>
+			</div>
+			<div id="">
+				<% include partials/playermatchrow %>
+			</div>
 		</div>
 		<div id="next-player-target">
 			<button type="button" class="round-button primary margined" onclick="addPlayer();">

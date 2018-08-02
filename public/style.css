@@ -49,20 +49,21 @@ tr:nth-child(even) {
 
 }
 
-/*#icon-added a::before{
-  padding-right: 10px;
-  font-family: "FontAwesome"
+.player-badge-card {
+  background-color: rgb(243, 229, 171);
+  border-radius: 10px;
+  height: 40%;
+  width: 46%;
+  margin: 1%;
+  padding: 1%;
+  float: left;
+  text-align: left;
+  /*box-shadow: 0 2px 3px 2px rgba(36, 31, 32, .3);*/
 }
 
-#resultsTable a::before{
-  content: "\f015";
+.player-badge-card div div {
+  padding:4px 0 4px;
 }
-#resultsTable a::before{
-  content: "\f2b9";
-}
-#resultsTable a::before{
-  content: "\f0e0";
-}*/
 
 .bottombar {
   background-color: rgb(243, 229, 171);

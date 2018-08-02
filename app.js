@@ -56,6 +56,9 @@ app.get("/faqs", function(req, res) {
 APP ROUTES
 *********************************************/
 
+app.get("/play", function(req, res) {
+	res.render("play");
+});
 
 app.get("/decks", function(req,res){
 	request("http://" + domain + "/api/decks", function(err, response, body) {
